@@ -21,83 +21,26 @@ const WATER_DB = [
   { id:18, name:"Arrowhead",         tier:"midtier",  logo:"🏹",  color:"#34d399", pH:7.7, calcium:26,  magnesium:9,   sodium:5,   tds:162,  bicarbonate:120,  price:0.85, plastic:true,  type:"Natural Still",     origin:"Mountain Springs, CA/CO",        verdict:"Western US mountain spring with decent mineral content. Good pH. Reliable West Coast choice." },
   { id:19, name:"Zephyrhills",       tier:"midtier",  logo:"🌴",  color:"#2dd4bf", pH:7.8, calcium:55,  magnesium:4,   sodium:6,   tds:196,  bicarbonate:188,  price:0.85, plastic:true,  type:"Natural Still",     origin:"Florida Springs",                verdict:"Florida spring with above-average calcium. Great for Southeast consumers." },
   { id:20, name:"Smartwater",        tier:"midtier",  logo:"⚡",  color:"#a855f7", pH:7.0, calcium:15,  magnesium:0,   sodium:10,  tds:55,   bicarbonate:0,    price:1.40, plastic:true,  type:"Vapor Distilled",   origin:"Municipal tap, vapor distilled", verdict:"Vapor distilled tap with electrolytes added. Zero Mg is significant gap. Marketing exceeds substance." },
-  { id:21, name:"Essentia",          tier:"midtier",  logo:"⚗️", color:"#8b5cf6", pH:9.5, calcium:0,   magnesium:0,   sodium:7,   tds:35,   bicarbonate:0,    price:1.80, plastic:true,  type:"Ionized Alkaline",  origin:"Municipal tap, ionized",         verdict:"High pH via ionization, NOT natural minerals. Zero Ca & Mg undermines all alkaline health claims." },
+  { id:21, name:"Essentia",          tier:"midtier",  logo:"⚗️", color:"#8b5cf6", pH:9.5, calcium:0,   magnesium:0,   sodium:7,   tds:35,   bicarbonate:0,    price:1.80, plastic:true,  type:"Ionized Alkaline",  origin:"Municipal tap, ionized",         verdict:"High pH via ionization, NOT natural minerals. Zero Ca and Mg undermines all alkaline health claims." },
   { id:22, name:"Eternal",           tier:"midtier",  logo:"♾️", color:"#6ee7b7", pH:8.1, calcium:22,  magnesium:8,   sodium:6,   tds:100,  bicarbonate:95,   price:1.30, plastic:true,  type:"Natural Still",     origin:"Natural Springs, USA/Canada",    verdict:"Naturally alkaline spring with modest minerals. Better than artificially alkaline brands." },
   { id:23, name:"Core Hydration",    tier:"midtier",  logo:"🔵",  color:"#38bdf8", pH:7.4, calcium:0,   magnesium:0,   sodium:0,   tds:10,   bicarbonate:0,    price:1.50, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Ultra-purified near-zero TDS with pH adjusted. Despite claims, mineral content is essentially zero." },
   { id:24, name:"Liquid Death",      tier:"specialty",logo:"💀",  color:"#475569", pH:7.0, calcium:14,  magnesium:5,   sodium:10,  tds:100,  bicarbonate:74,   price:1.80, plastic:false, type:"Natural Still",     origin:"Austrian Alps, Austria",         verdict:"Austrian alpine water in aluminum cans. Decent minerals for price. Sustainable packaging positive." },
   { id:25, name:"Flow Alkaline",     tier:"specialty",logo:"🌊",  color:"#67e8f9", pH:8.1, calcium:38,  magnesium:13,  sodium:6,   tds:148,  bicarbonate:128,  price:2.20, plastic:false, type:"Artesian Alkaline", origin:"Canadian Artesian Spring",       verdict:"Naturally alkaline Canadian artesian with real minerals behind the pH. Eco-friendly packaging." },
   { id:26, name:"Just Water",        tier:"specialty",logo:"🌍",  color:"#4ade80", pH:8.0, calcium:24,  magnesium:8,   sodium:5,   tds:98,   bicarbonate:90,   price:1.90, plastic:false, type:"Natural Still",     origin:"Glens Falls, NY Spring",         verdict:"Naturally alkaline NY spring in plant-based packaging. Decent minerals, strong eco credentials." },
-  { id:27, name:"LaCroix",           tier:"specialty",logo:"🌈",  color:"#fb7185", pH:4.7, calcium:0,   magnesium:0,   sodium:2,   tds:10,   bicarbonate:0,    price:0.85, plastic:false, type:"Sparkling Purified", origin:"Municipal tap + CO2",            verdict:"Popular purified sparkling. Acidic pH from carbonation. Zero minerals. Occasional variety only." },
-  { id:28, name:"Pure Life",         tier:"budget",   logo:"💧",  color:"#3b82f6", pH:7.2, calcium:18,  magnesium:5,   sodium:8,   tds:95,   bicarbonate:45,   price:0.60, plastic:true,  type:"Purified+Remineralized",origin:"Municipal tap, remineralized",  verdict:"Purified tap with minerals added back. Balanced LSI. Best budget remineralized option." },
+  { id:27, name:"LaCroix",           tier:"specialty",logo:"🌈",  color:"#fb7185", pH:4.7, calcium:0,   magnesium:0,   sodium:2,   tds:10,   bicarbonate:0,    price:0.85, plastic:false, type:"Sparkling Purified", origin:"Municipal tap plus CO2",         verdict:"Popular purified sparkling. Acidic pH from carbonation. Zero minerals. Occasional variety only." },
+  { id:28, name:"Pure Life",         tier:"budget",   logo:"💧",  color:"#3b82f6", pH:7.2, calcium:18,  magnesium:5,   sodium:8,   tds:95,   bicarbonate:45,   price:0.60, plastic:true,  type:"Purified Remineralized", origin:"Municipal tap, remineralized", verdict:"Purified tap with minerals added back. Balanced LSI. Best budget remineralized option." },
   { id:29, name:"Dasani",            tier:"budget",   logo:"🏭",  color:"#94a3b8", pH:5.6, calcium:0,   magnesium:0,   sodium:6,   tds:20,   bicarbonate:0,    price:0.80, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Filtered municipal with acidic pH and near-zero minerals. One of the poorest health choices available." },
   { id:30, name:"Aquafina",          tier:"budget",   logo:"🏭",  color:"#94a3b8", pH:6.0, calcium:0,   magnesium:0,   sodium:0,   tds:10,   bicarbonate:0,    price:0.75, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Lowest TDS in database. Near-maximally aggressive. Removes contaminants AND all beneficial minerals." },
   { id:31, name:"Great Value",       tier:"budget",   logo:"🛒",  color:"#fde047", pH:6.5, calcium:0,   magnesium:0,   sodium:5,   tds:15,   bicarbonate:0,    price:0.25, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Walmart store brand. Lowest cost accessible. Better pH than Dasani. Zero minerals but clean water." },
   { id:32, name:"Kirkland",          tier:"budget",   logo:"🏪",  color:"#ef4444", pH:6.8, calcium:0,   magnesium:0,   sodium:3,   tds:15,   bicarbonate:0,    price:0.20, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Costco bulk. Best value per gallon. Better pH than most purified waters. Zero minerals." },
   { id:33, name:"Crystal Geyser",    tier:"budget",   logo:"🗻",  color:"#22d3ee", pH:6.9, calcium:14,  magnesium:5,   sodium:4,   tds:74,   bicarbonate:57,   price:0.50, plastic:true,  type:"Natural Still",     origin:"Mount Shasta, CA Springs",       verdict:"Genuine spring from Mt. Shasta at budget price. Best mineral-containing option at the budget tier." },
-  { id:34, name:"Dollar Tree",       tier:"budget",   logo:"🌳",  color:"#86efac", pH:6.7, calcium:0,   magnesium:0,   sodium:5,   tds:15,   bicarbonate:0,    price:0.17, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Lowest cost in database at $0.17/L. Critically important clean water access for underserved communities." },
-  { id:35, name:"Kirkland Sparkling",tier:"budget",   logo:"🫧",  color:"#67e8f9", pH:5.8, calcium:35,  magnesium:8,   sodium:8,   tds:130,  bicarbonate:105,  price:0.35, plastic:false, type:"Natural Sparkling", origin:"Natural Spring + CO2",           verdict:"Costco sparkling with real spring minerals. Best value sparkling water with actual mineral content." },
+  { id:34, name:"Dollar Tree",       tier:"budget",   logo:"🌳",  color:"#86efac", pH:6.7, calcium:0,   magnesium:0,   sodium:5,   tds:15,   bicarbonate:0,    price:0.17, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Lowest cost in database. Critically important clean water access for underserved communities." },
+  { id:35, name:"Kirkland Sparkling",tier:"budget",   logo:"🫧",  color:"#67e8f9", pH:5.8, calcium:35,  magnesium:8,   sodium:8,   tds:130,  bicarbonate:105,  price:0.35, plastic:false, type:"Natural Sparkling", origin:"Natural Spring plus CO2",        verdict:"Costco sparkling with real spring minerals. Best value sparkling water with actual mineral content." },
   { id:36, name:"Aldi Store Brand",  tier:"budget",   logo:"🏷️", color:"#a3e635", pH:7.0, calcium:0,   magnesium:0,   sodium:5,   tds:15,   bicarbonate:0,    price:0.19, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Aldi house brand. Neutral pH is one of best in budget purified category. Excellent community value." },
-  { id:37, name:"Member's Mark",     tier:"budget",   logo:"🏬",  color:"#f97316", pH:6.7, calcium:0,   magnesium:0,   sodium:4,   tds:14,   bicarbonate:0,    price:0.22, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Sam's Club store brand. Ultra-low cost clean water. Widely available, very affordable for families." },
+  { id:37, name:"Members Mark",      tier:"budget",   logo:"🏬",  color:"#f97316", pH:6.7, calcium:0,   magnesium:0,   sodium:4,   tds:14,   bicarbonate:0,    price:0.22, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Sams Club store brand. Ultra-low cost clean water. Widely available, very affordable for families." },
   { id:38, name:"Niagara",           tier:"budget",   logo:"🌊",  color:"#67e8f9", pH:6.9, calcium:0,   magnesium:0,   sodium:5,   tds:18,   bicarbonate:0,    price:0.28, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"One of largest US bottlers. Reasonable pH for a purified product. Budget accessible." },
-  { id:39, name:"Target Good&Gather",tier:"budget",   logo:"🎯",  color:"#ef4444", pH:7.0, calcium:0,   magnesium:0,   sodium:4,   tds:12,   bicarbonate:0,    price:0.22, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Target house brand. Clean neutral pH. Zero minerals. One of cleaner-profile budget purified waters." },
-  { id:40, name:"Proud Source",      tier:"specialty",logo:"🏔️", color:"#f97316", pH:7.8, calcium:35,  magnesium:12,  sodium:7,   tds:148,  bicarbonate:140,  price:2.10, plastic:false, type:"Artesian Still",    origin:"Snake River Plain Aquifer, ID",  verdict:"Idaho artesian in aluminum can. Good mineral profile, naturally alkaline. Strong health & eco profile." },
-];
-
-const CITIES = [
-  { name:"New York, NY",          state:"NY", pH:7.2, tds:50,  calcium:14, bicarbonate:30,  region:"tristate" },
-  { name:"Los Angeles, CA",       state:"CA", pH:7.8, tds:280, calcium:68, bicarbonate:120, region:"west" },
-  { name:"Chicago, IL",           state:"IL", pH:7.4, tds:165, calcium:45, bicarbonate:75,  region:"midwest" },
-  { name:"Houston, TX",           state:"TX", pH:7.9, tds:310, calcium:75, bicarbonate:130, region:"south" },
-  { name:"Phoenix, AZ",           state:"AZ", pH:7.6, tds:420, calcium:95, bicarbonate:155, region:"west" },
-  { name:"Philadelphia, PA",      state:"PA", pH:7.1, tds:120, calcium:28, bicarbonate:55,  region:"tristate" },
-  { name:"San Antonio, TX",       state:"TX", pH:7.7, tds:380, calcium:85, bicarbonate:145, region:"south" },
-  { name:"San Diego, CA",         state:"CA", pH:7.5, tds:490, calcium:110,bicarbonate:165, region:"west" },
-  { name:"Dallas, TX",            state:"TX", pH:7.8, tds:290, calcium:70, bicarbonate:125, region:"south" },
-  { name:"Miami, FL",             state:"FL", pH:7.3, tds:200, calcium:52, bicarbonate:85,  region:"fl" },
-  { name:"Atlanta, GA",           state:"GA", pH:6.9, tds:65,  calcium:18, bicarbonate:28,  region:"south" },
-import { useState } from "react";
-
-const WATER_DB = [
-  { id:1,  name:"Gerolsteiner",      tier:"premium",  logo:"🇩🇪", color:"#ef4444", pH:5.9, calcium:348, magnesium:108, sodium:118, tds:2527, bicarbonate:1816, price:1.90, plastic:false, type:"Natural Sparkling", origin:"Volcanic Eifel, Germany",        verdict:"Most mineral-dense water on earth. Extraordinary Mg & Ca. Clinically superior for deficiency correction." },
-  { id:2,  name:"San Pellegrino",    tier:"premium",  logo:"🇮🇹", color:"#f59e0b", pH:7.7, calcium:174, magnesium:56,  sodium:36,  tds:1109, bicarbonate:243,  price:2.30, plastic:false, type:"Natural Sparkling", origin:"Bergamo Alps, Italy",             verdict:"Gold standard sparkling mineral water. Outstanding Ca & Mg. High sulfate aids digestion." },
-  { id:3,  name:"Perrier",           tier:"premium",  logo:"🫧",  color:"#10b981", pH:5.5, calcium:155, magnesium:3,   sodium:9,   tds:475,  bicarbonate:390,  price:2.10, plastic:false, type:"Natural Sparkling", origin:"Vergèze, France",                 verdict:"Highest calcium of any mainstream sparkling. Low Mg is a gap. Excellent boost, not sole water." },
-  { id:4,  name:"Evian",             tier:"premium",  logo:"🏔️", color:"#3b82f6", pH:7.2, calcium:80,  magnesium:26,  sodium:6,   tds:309,  bicarbonate:357,  price:2.50, plastic:true,  type:"Natural Still",     origin:"French Alps, France",            verdict:"One of the most mineral-balanced waters in the world. Excellent Mg. The benchmark for still mineral water." },
-  { id:5,  name:"Contrex",           tier:"premium",  logo:"💪",  color:"#f9a8d4", pH:7.4, calcium:486, magnesium:84,  sodium:9,   tds:2078, bicarbonate:403,  price:1.80, plastic:true,  type:"Natural Still",     origin:"Contrexéville, France",          verdict:"Highest calcium of any still water — 486 mg/L. Exceptional for bone health deficiency correction." },
-  { id:6,  name:"Apollinaris",       tier:"premium",  logo:"👑",  color:"#c084fc", pH:5.9, calcium:89,  magnesium:130, sodium:410, tds:2500, bicarbonate:1820, price:2.10, plastic:false, type:"Natural Sparkling", origin:"Bad Neuenahr, Germany",           verdict:"Highest magnesium in database — 130 mg/L. Very high sodium. Use in rotation for Mg supplementation." },
-  { id:7,  name:"Badoit",            tier:"premium",  logo:"🇫🇷", color:"#93c5fd", pH:6.0, calcium:190, magnesium:85,  sodium:150, tds:1200, bicarbonate:1300, price:2.40, plastic:false, type:"Natural Sparkling", origin:"Saint-Galmier, France",           verdict:"Outstanding Ca & Mg balance. High sodium is a consideration. Among the best mineral waters globally." },
-  { id:8,  name:"Hildon",            tier:"premium",  logo:"🏰",  color:"#84cc16", pH:7.4, calcium:98,  magnesium:5,   sodium:11,  tds:312,  bicarbonate:288,  price:2.20, plastic:false, type:"Natural Still",     origin:"Hampshire, England",             verdict:"High calcium, naturally balanced. Preferred water of the British royal household." },
-  { id:9,  name:"Mountain Valley",   tier:"premium",  logo:"⛰️", color:"#a3e635", pH:7.8, calcium:68,  magnesium:22,  sodium:3,   tds:220,  bicarbonate:272,  price:2.60, plastic:false, type:"Natural Still",     origin:"Ouachita Mountains, AR",         verdict:"One of America's finest spring waters. Served at the US Senate. Excellent Ca & Mg balance." },
-  { id:10, name:"Acqua Panna",       tier:"premium",  logo:"🌿",  color:"#fbbf24", pH:8.0, calcium:34,  magnesium:7,   sodium:6,   tds:122,  bicarbonate:107,  price:2.10, plastic:false, type:"Natural Still",     origin:"Tuscany, Italy",                 verdict:"Beautifully balanced naturally alkaline Tuscan water. Perfect food pairing." },
-  { id:11, name:"Fiji",              tier:"premium",  logo:"🏝️", color:"#06b6d4", pH:7.7, calcium:18,  magnesium:15,  sodium:18,  tds:222,  bicarbonate:152,  price:2.20, plastic:true,  type:"Artesian Still",    origin:"Viti Levu, Fiji Islands",        verdict:"Silica-rich artesian with good pH. Modest minerals despite premium marketing." },
-  { id:12, name:"Voss",              tier:"premium",  logo:"🇳🇴", color:"#e2e8f0", pH:6.0, calcium:5,   magnesium:1,   sodium:6,   tds:22,   bicarbonate:17,   price:3.50, plastic:false, type:"Natural Still",     origin:"Iveland, Norway",                verdict:"Beautiful bottle, virtually zero mineral content. Most overpriced mineral-poor water available." },
-  { id:13, name:"Icelandic Glacial", tier:"premium",  logo:"🧊",  color:"#bae6fd", pH:8.4, calcium:3,   magnesium:1,   sodium:7,   tds:62,   bicarbonate:87,   price:2.80, plastic:false, type:"Natural Still",     origin:"Ölfus Spring, Iceland",          verdict:"Naturally alkaline volcanic. Very low minerals despite premium positioning. Carbon neutral." },
-  { id:14, name:"Topo Chico",        tier:"premium",  logo:"🫙",  color:"#f472b6", pH:5.7, calcium:47,  magnesium:9,   sodium:52,  tds:556,  bicarbonate:320,  price:1.50, plastic:false, type:"Natural Sparkling", origin:"Monterrey, Mexico",               verdict:"Cult-favorite Mexican mineral water. Good Ca, moderate TDS. Higher sodium than ideal." },
-  { id:15, name:"Waiākea",           tier:"premium",  logo:"🌺",  color:"#f97316", pH:8.2, calcium:21,  magnesium:7,   sodium:11,  tds:118,  bicarbonate:125,  price:2.40, plastic:true,  type:"Volcanic Still",    origin:"Mauna Loa, Hawaii",              verdict:"Naturally alkaline Hawaiian volcanic. Moderate minerals, genuine eco-credentials." },
-  { id:16, name:"Poland Spring",     tier:"midtier",  logo:"🌲",  color:"#22c55e", pH:7.2, calcium:7,   magnesium:1,   sodium:3,   tds:38,   bicarbonate:35,   price:0.90, plastic:true,  type:"Natural Still",     origin:"Maine, USA",                     verdict:"Genuine US spring at accessible price. Low minerals but balanced pH. Safe daily choice." },
-  { id:17, name:"Deer Park",         tier:"midtier",  logo:"🦌",  color:"#86efac", pH:7.0, calcium:22,  magnesium:5,   sodium:7,   tds:93,   bicarbonate:71,   price:0.85, plastic:true,  type:"Natural Still",     origin:"Mid-Atlantic US Springs",        verdict:"Moderate mineral spring water from Mid-Atlantic. Better minerals than Poland Spring." },
-  { id:18, name:"Arrowhead",         tier:"midtier",  logo:"🏹",  color:"#34d399", pH:7.7, calcium:26,  magnesium:9,   sodium:5,   tds:162,  bicarbonate:120,  price:0.85, plastic:true,  type:"Natural Still",     origin:"Mountain Springs, CA/CO",        verdict:"Western US mountain spring with decent mineral content. Good pH. Reliable West Coast choice." },
-  { id:19, name:"Zephyrhills",       tier:"midtier",  logo:"🌴",  color:"#2dd4bf", pH:7.8, calcium:55,  magnesium:4,   sodium:6,   tds:196,  bicarbonate:188,  price:0.85, plastic:true,  type:"Natural Still",     origin:"Florida Springs",                verdict:"Florida spring with above-average calcium. Great for Southeast consumers." },
-  { id:20, name:"Smartwater",        tier:"midtier",  logo:"⚡",  color:"#a855f7", pH:7.0, calcium:15,  magnesium:0,   sodium:10,  tds:55,   bicarbonate:0,    price:1.40, plastic:true,  type:"Vapor Distilled",   origin:"Municipal tap, vapor distilled", verdict:"Vapor distilled tap with electrolytes added. Zero Mg is significant gap. Marketing exceeds substance." },
-  { id:21, name:"Essentia",          tier:"midtier",  logo:"⚗️", color:"#8b5cf6", pH:9.5, calcium:0,   magnesium:0,   sodium:7,   tds:35,   bicarbonate:0,    price:1.80, plastic:true,  type:"Ionized Alkaline",  origin:"Municipal tap, ionized",         verdict:"High pH via ionization, NOT natural minerals. Zero Ca & Mg undermines all alkaline health claims." },
-  { id:22, name:"Eternal",           tier:"midtier",  logo:"♾️", color:"#6ee7b7", pH:8.1, calcium:22,  magnesium:8,   sodium:6,   tds:100,  bicarbonate:95,   price:1.30, plastic:true,  type:"Natural Still",     origin:"Natural Springs, USA/Canada",    verdict:"Naturally alkaline spring with modest minerals. Better than artificially alkaline brands." },
-  { id:23, name:"Core Hydration",    tier:"midtier",  logo:"🔵",  color:"#38bdf8", pH:7.4, calcium:0,   magnesium:0,   sodium:0,   tds:10,   bicarbonate:0,    price:1.50, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Ultra-purified near-zero TDS with pH adjusted. Despite claims, mineral content is essentially zero." },
-  { id:24, name:"Liquid Death",      tier:"specialty",logo:"💀",  color:"#475569", pH:7.0, calcium:14,  magnesium:5,   sodium:10,  tds:100,  bicarbonate:74,   price:1.80, plastic:false, type:"Natural Still",     origin:"Austrian Alps, Austria",         verdict:"Austrian alpine water in aluminum cans. Decent minerals for price. Sustainable packaging positive." },
-  { id:25, name:"Flow Alkaline",     tier:"specialty",logo:"🌊",  color:"#67e8f9", pH:8.1, calcium:38,  magnesium:13,  sodium:6,   tds:148,  bicarbonate:128,  price:2.20, plastic:false, type:"Artesian Alkaline", origin:"Canadian Artesian Spring",       verdict:"Naturally alkaline Canadian artesian with real minerals behind the pH. Eco-friendly packaging." },
-  { id:26, name:"Just Water",        tier:"specialty",logo:"🌍",  color:"#4ade80", pH:8.0, calcium:24,  magnesium:8,   sodium:5,   tds:98,   bicarbonate:90,   price:1.90, plastic:false, type:"Natural Still",     origin:"Glens Falls, NY Spring",         verdict:"Naturally alkaline NY spring in plant-based packaging. Decent minerals, strong eco credentials." },
-  { id:27, name:"LaCroix",           tier:"specialty",logo:"🌈",  color:"#fb7185", pH:4.7, calcium:0,   magnesium:0,   sodium:2,   tds:10,   bicarbonate:0,    price:0.85, plastic:false, type:"Sparkling Purified", origin:"Municipal tap + CO2",            verdict:"Popular purified sparkling. Acidic pH from carbonation. Zero minerals. Occasional variety only." },
-  { id:28, name:"Pure Life",         tier:"budget",   logo:"💧",  color:"#3b82f6", pH:7.2, calcium:18,  magnesium:5,   sodium:8,   tds:95,   bicarbonate:45,   price:0.60, plastic:true,  type:"Purified+Remineralized",origin:"Municipal tap, remineralized",  verdict:"Purified tap with minerals added back. Balanced LSI. Best budget remineralized option." },
-  { id:29, name:"Dasani",            tier:"budget",   logo:"🏭",  color:"#94a3b8", pH:5.6, calcium:0,   magnesium:0,   sodium:6,   tds:20,   bicarbonate:0,    price:0.80, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Filtered municipal with acidic pH and near-zero minerals. One of the poorest health choices available." },
-  { id:30, name:"Aquafina",          tier:"budget",   logo:"🏭",  color:"#94a3b8", pH:6.0, calcium:0,   magnesium:0,   sodium:0,   tds:10,   bicarbonate:0,    price:0.75, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Lowest TDS in database. Near-maximally aggressive. Removes contaminants AND all beneficial minerals." },
-  { id:31, name:"Great Value",       tier:"budget",   logo:"🛒",  color:"#fde047", pH:6.5, calcium:0,   magnesium:0,   sodium:5,   tds:15,   bicarbonate:0,    price:0.25, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Walmart store brand. Lowest cost accessible. Better pH than Dasani. Zero minerals but clean water." },
-  { id:32, name:"Kirkland",          tier:"budget",   logo:"🏪",  color:"#ef4444", pH:6.8, calcium:0,   magnesium:0,   sodium:3,   tds:15,   bicarbonate:0,    price:0.20, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Costco bulk. Best value per gallon. Better pH than most purified waters. Zero minerals." },
-  { id:33, name:"Crystal Geyser",    tier:"budget",   logo:"🗻",  color:"#22d3ee", pH:6.9, calcium:14,  magnesium:5,   sodium:4,   tds:74,   bicarbonate:57,   price:0.50, plastic:true,  type:"Natural Still",     origin:"Mount Shasta, CA Springs",       verdict:"Genuine spring from Mt. Shasta at budget price. Best mineral-containing option at the budget tier." },
-  { id:34, name:"Dollar Tree",       tier:"budget",   logo:"🌳",  color:"#86efac", pH:6.7, calcium:0,   magnesium:0,   sodium:5,   tds:15,   bicarbonate:0,    price:0.17, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Lowest cost in database at $0.17/L. Critically important clean water access for underserved communities." },
-  { id:35, name:"Kirkland Sparkling",tier:"budget",   logo:"🫧",  color:"#67e8f9", pH:5.8, calcium:35,  magnesium:8,   sodium:8,   tds:130,  bicarbonate:105,  price:0.35, plastic:false, type:"Natural Sparkling", origin:"Natural Spring + CO2",           verdict:"Costco sparkling with real spring minerals. Best value sparkling water with actual mineral content." },
-  { id:36, name:"Aldi Store Brand",  tier:"budget",   logo:"🏷️", color:"#a3e635", pH:7.0, calcium:0,   magnesium:0,   sodium:5,   tds:15,   bicarbonate:0,    price:0.19, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Aldi house brand. Neutral pH is one of best in budget purified category. Excellent community value." },
-  { id:37, name:"Member's Mark",     tier:"budget",   logo:"🏬",  color:"#f97316", pH:6.7, calcium:0,   magnesium:0,   sodium:4,   tds:14,   bicarbonate:0,    price:0.22, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Sam's Club store brand. Ultra-low cost clean water. Widely available, very affordable for families." },
-  { id:38, name:"Niagara",           tier:"budget",   logo:"🌊",  color:"#67e8f9", pH:6.9, calcium:0,   magnesium:0,   sodium:5,   tds:18,   bicarbonate:0,    price:0.28, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"One of largest US bottlers. Reasonable pH for a purified product. Budget accessible." },
-  { id:39, name:"Target Good&Gather",tier:"budget",   logo:"🎯",  color:"#ef4444", pH:7.0, calcium:0,   magnesium:0,   sodium:4,   tds:12,   bicarbonate:0,    price:0.22, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Target house brand. Clean neutral pH. Zero minerals. One of cleaner-profile budget purified waters." },
-  { id:40, name:"Proud Source",      tier:"specialty",logo:"🏔️", color:"#f97316", pH:7.8, calcium:35,  magnesium:12,  sodium:7,   tds:148,  bicarbonate:140,  price:2.10, plastic:false, type:"Artesian Still",    origin:"Snake River Plain Aquifer, ID",  verdict:"Idaho artesian in aluminum can. Good mineral profile, naturally alkaline. Strong health & eco profile." },
+  { id:39, name:"Target GoodGather", tier:"budget",   logo:"🎯",  color:"#ef4444", pH:7.0, calcium:0,   magnesium:0,   sodium:4,   tds:12,   bicarbonate:0,    price:0.22, plastic:true,  type:"Purified",          origin:"Municipal tap, purified",        verdict:"Target house brand. Clean neutral pH. Zero minerals. One of cleaner-profile budget purified waters." },
+  { id:40, name:"Proud Source",      tier:"specialty",logo:"🏔️", color:"#f97316", pH:7.8, calcium:35,  magnesium:12,  sodium:7,   tds:148,  bicarbonate:140,  price:2.10, plastic:false, type:"Artesian Still",    origin:"Snake River Plain Aquifer, ID",  verdict:"Idaho artesian in aluminum can. Good mineral profile, naturally alkaline. Strong health and eco profile." },
 ];
 
 const CITIES = [
@@ -126,8 +69,8 @@ const CITIES = [
   { name:"Syracuse, NY",          state:"NY", pH:7.3, tds:130, calcium:34, bicarbonate:62,  region:"ny" },
   { name:"Albany, NY",            state:"NY", pH:7.2, tds:85,  calcium:20, bicarbonate:38,  region:"ny" },
   { name:"Yonkers, NY",           state:"NY", pH:7.2, tds:55,  calcium:15, bicarbonate:32,  region:"tristate" },
-  { name:"Long Island (Nassau)",  state:"NY", pH:7.4, tds:175, calcium:44, bicarbonate:80,  region:"tristate" },
-  { name:"Long Island (Suffolk)", state:"NY", pH:7.3, tds:155, calcium:38, bicarbonate:70,  region:"tristate" },
+  { name:"Long Island Nassau",    state:"NY", pH:7.4, tds:175, calcium:44, bicarbonate:80,  region:"tristate" },
+  { name:"Long Island Suffolk",   state:"NY", pH:7.3, tds:155, calcium:38, bicarbonate:70,  region:"tristate" },
   { name:"Westchester, NY",       state:"NY", pH:7.2, tds:60,  calcium:16, bicarbonate:34,  region:"tristate" },
   { name:"Poughkeepsie, NY",      state:"NY", pH:7.3, tds:95,  calcium:24, bicarbonate:45,  region:"ny" },
   { name:"Newburgh, NY",          state:"NY", pH:7.1, tds:80,  calcium:20, bicarbonate:38,  region:"ny" },
@@ -170,7 +113,7 @@ const CITIES = [
   { name:"Gainesville, FL",       state:"FL", pH:7.4, tds:168, calcium:42, bicarbonate:78,  region:"fl" },
   { name:"Sarasota, FL",          state:"FL", pH:7.7, tds:260, calcium:62, bicarbonate:112, region:"fl" },
   { name:"Cape Coral, FL",        state:"FL", pH:7.8, tds:290, calcium:70, bicarbonate:125, region:"fl" },
-  { name:"St. Petersburg, FL",    state:"FL", pH:7.6, tds:240, calcium:56, bicarbonate:100, region:"fl" },
+  { name:"St Petersburg, FL",     state:"FL", pH:7.6, tds:240, calcium:56, bicarbonate:100, region:"fl" },
   { name:"Pensacola, FL",         state:"FL", pH:7.3, tds:145, calcium:36, bicarbonate:68,  region:"fl" },
   { name:"Columbus, OH",          state:"OH", pH:7.5, tds:235, calcium:58, bicarbonate:102, region:"oh" },
   { name:"Cleveland, OH",         state:"OH", pH:7.4, tds:195, calcium:48, bicarbonate:88,  region:"oh" },
@@ -196,27 +139,27 @@ const CITIES = [
   { name:"Myrtle Beach, SC",      state:"SC", pH:7.5, tds:195, calcium:47, bicarbonate:88,  region:"sc" },
   { name:"Hilton Head, SC",       state:"SC", pH:7.4, tds:170, calcium:40, bicarbonate:76,  region:"sc" },
   { name:"Summerville, SC",       state:"SC", pH:7.3, tds:140, calcium:34, bicarbonate:64,  region:"sc" },
-];         st
-const GLOSSARY = [
-  { term:"LSI", full:"Langelier Saturation Index", icon:"🔬", color:"#00d4ff", def:"A scientific formula that measures whether water is corrosive (negative), balanced (near zero), or scale-forming (positive). Negative LSI water pulls calcium and magnesium from your body with every sip. The ideal range is −0.2 to +0.2.", example:"Dasani LSI: −1.8 (very aggressive). Evian LSI: +0.1 (balanced)." },
-  { term:"TDS", full:"Total Dissolved Solids", icon:"💧", color:"#63d39e", def:"The total concentration of dissolved minerals, salts, and metals in water, measured in mg/L. Higher TDS from natural minerals is generally positive for health. Higher TDS from industrial runoff is negative.", example:"NYC tap: ~50 mg/L (very low). Gerolsteiner: 2,527 mg/L (very high — mineral-rich)." },
-  { term:"pH", full:"Potential of Hydrogen", icon:"⚗️", color:"#a78bfa", def:"A scale from 0–14 measuring how acidic or alkaline water is. 7.0 is neutral. Below 7 is acidic. Above 7 is alkaline. Ideal drinking water pH is 7.0–8.5. Your blood maintains pH 7.4 — water that matches this is most biocompatible.", example:"Aquafina: pH 6.0 (acidic). Evian: pH 7.2 (ideal). Icelandic Glacial: pH 8.4 (alkaline)." },
-  { term:"Calcium (Ca)", full:"Calcium Hardness", icon:"🦴", color:"#fbbf24", def:"Essential mineral for bone density, muscle contraction, nerve transmission, and heart rhythm. WHO recommends 50–100 mg/L minimum in drinking water. Most Americans get far less than optimal from their water.", example:"Contrex: 486 mg/L (exceptional). Aquafina: 0 mg/L (none at all)." },
-  { term:"Magnesium (Mg)", full:"Magnesium Content", icon:"⚡", color:"#34d399", def:"The master mineral — involved in 300+ enzymatic reactions. Regulates sleep, stress, muscle function, blood sugar, and heart rhythm. Up to 50% of Americans are deficient. Drinking magnesium-rich water is one of the easiest ways to address this gap.", example:"Apollinaris: 130 mg/L (highest available). Smartwater: 0 mg/L (none)." },
-  { term:"Bicarbonate", full:"Bicarbonate Alkalinity", icon:"🌊", color:"#60a5fa", def:"Acts as a natural buffer that neutralizes acidity in water and in your body. Higher bicarbonate content helps counteract the acidic effects of modern diet and protects tooth enamel. It is a key component in LSI calculation.", example:"Gerolsteiner: 1,816 mg/L. Dasani: 0 mg/L." },
-  { term:"Sodium (Na)", full:"Sodium Content", icon:"🧂", color:"#f97316", def:"Naturally present in all water in small amounts. Useful for electrolyte balance during exercise. However, high sodium water (>200 mg/L) can be a concern for people managing blood pressure. Walter flags high-sodium waters.", example:"Apollinaris: 410 mg/L (very high). Mountain Valley: 3 mg/L (excellent)." },
-  { term:"Hardness", full:"Water Hardness", icon:"💎", color:"#c084fc", def:"A measure of calcium and magnesium content in water. Soft water (0–75 ppm) is low in beneficial minerals. Hard water (150+ ppm) contains more minerals but can cause scaling on pipes and appliances.", example:"Bethlehem PA: very soft (17 ppm). Allentown PA: moderately hard (222 ppm)." },
-  { term:"Aggressive Water", full:"Aggressive/Corrosive Water", icon:"⚠️", color:"#ef4444", def:"Water with a negative LSI that actively dissolves minerals it contacts — including the calcium in your teeth and bones. Purified waters like Dasani and Aquafina are highly aggressive. Long-term consumption is linked to mineral depletion.", example:"Any water with LSI below −0.5 is classified as aggressive by Walter." },
-  { term:"Artesian", full:"Artesian Spring Water", icon:"🏔️", color:"#84cc16", def:"Water drawn from a confined underground aquifer where natural pressure pushes water to the surface without pumping. Often mineral-rich due to the geological layers it passes through. Generally higher quality than surface water.", example:"Fiji Water comes from an artesian aquifer in the Fijian volcanic highlands." },
-  { term:"WHO Standard", full:"World Health Organization Guideline", icon:"🌍", color:"#059669", def:"The WHO recommends drinking water contain a minimum of 50–100 mg/L calcium and 25–50 mg/L magnesium. The vast majority of bottled waters — including Dasani, Aquafina, and Smartwater — fail this standard completely.", example:"Only 12 of the 40 brands Walter tracks meet WHO mineral minimums." },
 ];
 
-const calcLSI = ({ pH, tds, calcium, bicarbonate }) => {
-  const A = tds < 50 ? 0.07 : tds < 150 ? 0.14 : tds < 300 ? 0.19 : tds < 500 ? 0.22 : 0.26;
-  const B = 1.0;
-  const C = calcium < 25 ? 1.0 : calcium < 50 ? 1.3 : calcium < 100 ? 1.6 : calcium < 200 ? 1.9 : 2.2;
-  const D = bicarbonate < 25 ? 1.1 : bicarbonate < 50 ? 1.4 : bicarbonate < 100 ? 1.7 : bicarbonate < 200 ? 2.0 : 2.3;
-  return parseFloat((pH - ((9.3 + A + B) - (C + D))).toFixed(2));
+const GLOSSARY = [
+  { term:"LSI", full:"Langelier Saturation Index", icon:"🔬", color:"#00d4ff", def:"A scientific formula that measures whether water is corrosive (negative), balanced (near zero), or scale-forming (positive). Negative LSI water pulls calcium and magnesium from your body with every sip. The ideal range is -0.2 to +0.2.", example:"Dasani LSI: -1.8 (very aggressive). Evian LSI: +0.1 (balanced)." },
+  { term:"TDS", full:"Total Dissolved Solids", icon:"💧", color:"#63d39e", def:"The total concentration of dissolved minerals, salts, and metals in water, measured in mg/L. Higher TDS from natural minerals is generally positive for health.", example:"NYC tap: 50 mg/L (very low). Gerolsteiner: 2527 mg/L (very high, mineral-rich)." },
+  { term:"pH", full:"Potential of Hydrogen", icon:"⚗️", color:"#a78bfa", def:"A scale from 0-14 measuring how acidic or alkaline water is. 7.0 is neutral. Below 7 is acidic. Above 7 is alkaline. Ideal drinking water pH is 7.0-8.5.", example:"Aquafina: pH 6.0 (acidic). Evian: pH 7.2 (ideal). Icelandic Glacial: pH 8.4 (alkaline)." },
+  { term:"Calcium", full:"Calcium Hardness", icon:"🦴", color:"#fbbf24", def:"Essential mineral for bone density, muscle contraction, nerve transmission, and heart rhythm. WHO recommends 50-100 mg/L minimum in drinking water.", example:"Contrex: 486 mg/L (exceptional). Aquafina: 0 mg/L (none at all)." },
+  { term:"Magnesium", full:"Magnesium Content", icon:"⚡", color:"#34d399", def:"The master mineral involved in 300+ enzymatic reactions. Regulates sleep, stress, muscle function, blood sugar, and heart rhythm. Up to 50% of Americans are deficient.", example:"Apollinaris: 130 mg/L (highest available). Smartwater: 0 mg/L (none)." },
+  { term:"Bicarbonate", full:"Bicarbonate Alkalinity", icon:"🌊", color:"#60a5fa", def:"Acts as a natural buffer that neutralizes acidity in water and in your body. Higher bicarbonate content protects tooth enamel and is a key component in LSI calculation.", example:"Gerolsteiner: 1816 mg/L. Dasani: 0 mg/L." },
+  { term:"Sodium", full:"Sodium Content", icon:"🧂", color:"#f97316", def:"Naturally present in all water in small amounts. High sodium water above 200 mg/L can be a concern for people managing blood pressure.", example:"Apollinaris: 410 mg/L (very high). Mountain Valley: 3 mg/L (excellent)." },
+  { term:"Hardness", full:"Water Hardness", icon:"💎", color:"#c084fc", def:"A measure of calcium and magnesium content in water. Soft water 0-75 ppm is low in beneficial minerals. Hard water 150+ ppm contains more minerals.", example:"Bethlehem PA: very soft 17 ppm. Allentown PA: moderately hard 222 ppm." },
+  { term:"Aggressive", full:"Aggressive or Corrosive Water", icon:"⚠️", color:"#ef4444", def:"Water with a negative LSI that actively dissolves minerals it contacts including the calcium in your teeth and bones. Purified waters like Dasani are highly aggressive.", example:"Any water with LSI below -0.5 is classified as aggressive by Walter." },
+  { term:"Artesian", full:"Artesian Spring Water", icon:"🏔️", color:"#84cc16", def:"Water drawn from a confined underground aquifer where natural pressure pushes water to the surface without pumping. Often mineral-rich from geological layers.", example:"Fiji Water comes from an artesian aquifer in the Fijian volcanic highlands." },
+  { term:"WHO Standard", full:"World Health Organization Guideline", icon:"🌍", color:"#059669", def:"The WHO recommends drinking water contain a minimum of 50-100 mg/L calcium and 25-50 mg/L magnesium. Most bottled waters fail this standard completely.", example:"Only 12 of the 40 brands Walter tracks meet WHO mineral minimums." },
+];
+
+const calcLSI = (w) => {
+  const A = w.tds < 50 ? 0.07 : w.tds < 150 ? 0.14 : w.tds < 300 ? 0.19 : w.tds < 500 ? 0.22 : 0.26;
+  const C = w.calcium < 25 ? 1.0 : w.calcium < 50 ? 1.3 : w.calcium < 100 ? 1.6 : w.calcium < 200 ? 1.9 : 2.2;
+  const D = w.bicarbonate < 25 ? 1.1 : w.bicarbonate < 50 ? 1.4 : w.bicarbonate < 100 ? 1.7 : w.bicarbonate < 200 ? 2.0 : 2.3;
+  return parseFloat((w.pH - ((9.3 + A + 1.0) - (C + D))).toFixed(2));
 };
 
 const getLSIStatus = (lsi) => {
@@ -229,7 +172,7 @@ const getLSIStatus = (lsi) => {
 
 const getScore = (w) => {
   let s = 50;
-  const lsi = calcLSI({ pH:w.pH, tds:w.tds, calcium:w.calcium, bicarbonate:w.bicarbonate });
+  const lsi = calcLSI(w);
   if (lsi >= -0.2 && lsi <= 0.3) s += 15; else if (lsi < -0.5) s -= 20; else if (lsi < -0.2) s -= 8;
   if (w.magnesium >= 50) s += 18; else if (w.magnesium >= 20) s += 13; else if (w.magnesium >= 8) s += 6; else if (w.magnesium < 2) s -= 10;
   if (w.calcium >= 150) s += 15; else if (w.calcium >= 60) s += 10; else if (w.calcium >= 20) s += 5; else if (w.calcium < 5) s -= 8;
@@ -271,22 +214,22 @@ const CSS = `
 `;
 
 export default function Flozek() {
-  const [tab, setTab]               = useState("home");
+  const [tab, setTab] = useState("home");
   const [brandSearch, setBrandSearch] = useState("");
-  const [brandTier, setBrandTier]   = useState("all");
-  const [brandSort, setBrandSort]   = useState("score");
-  const [selBrand, setSelBrand]     = useState(null);
+  const [brandTier, setBrandTier] = useState("all");
+  const [brandSort, setBrandSort] = useState("score");
+  const [selBrand, setSelBrand] = useState(null);
   const [citySearch, setCitySearch] = useState("");
   const [cityRegion, setCityRegion] = useState("all");
-  const [selCity, setSelCity]       = useState(null);
-  const [calcVals, setCalcVals]     = useState({ pH:7.2, tds:150, calcium:40, bicarbonate:70 });
+  const [selCity, setSelCity] = useState(null);
+  const [calcVals, setCalcVals] = useState({ pH:7.2, tds:150, calcium:40, bicarbonate:70 });
   const [showResult, setShowResult] = useState(false);
-  const [lsiResult, setLsiResult]   = useState(null);
+  const [lsiResult, setLsiResult] = useState(null);
   const [selSymptoms, setSelSymptoms] = useState([]);
   const [symptomRes, setSymptomRes] = useState(null);
   const [showSymptoms, setShowSymptoms] = useState(false);
-  const [learnTab, setLearnTab]     = useState("academy");
-  const [eduIdx, setEduIdx]         = useState(0);
+  const [learnTab, setLearnTab] = useState("academy");
+  const [eduIdx, setEduIdx] = useState(0);
   const [glossaryIdx, setGlossaryIdx] = useState(0);
 
   const app = { fontFamily:"'DM Sans',sans-serif", background:"#06080f", minHeight:"100vh", color:"#e4ede8", maxWidth:440, margin:"0 auto", position:"relative", paddingBottom:80 };
@@ -309,7 +252,7 @@ export default function Flozek() {
       <div style={{ padding:"52px 22px 0" }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:24 }}>
           <div>
-            <div style={{ fontFamily:"'Syne',sans-serif", fontSize:32, fontWeight:800, background:"linear-gradient(135deg,#63d39e,#a8f0c8)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Flo·zēk</div>
+            <div style={{ fontFamily:"'Syne',sans-serif", fontSize:32, fontWeight:800, background:"linear-gradient(135deg,#63d39e,#a8f0c8)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Flozek</div>
             <div style={{ fontSize:12, color:"rgba(200,230,215,0.4)", letterSpacing:2, textTransform:"uppercase", marginTop:2 }}>Water Intelligence</div>
           </div>
           <div style={{ fontSize:40, animation:"float 3s ease infinite" }}>💧</div>
@@ -320,19 +263,19 @@ export default function Flozek() {
             <div style={{ width:48, height:48, borderRadius:"50%", background:"linear-gradient(135deg,#63d39e,#00d4ff)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>🤖</div>
             <div>
               <div style={{ fontSize:14, fontWeight:700, color:"#63d39e", marginBottom:3 }}>WALTER</div>
-              <div style={{ fontSize:12, color:"rgba(200,230,215,0.6)", lineHeight:1.6 }}>Water Analysis & Life Track Enhancement Recommendations. Your personal water intelligence assistant.</div>
+              <div style={{ fontSize:12, color:"rgba(200,230,215,0.6)", lineHeight:1.6 }}>Water Analysis and Life Track Enhancement Recommendations. Your personal water intelligence assistant.</div>
             </div>
           </div>
           <div style={{ marginTop:12, padding:"10px 14px", background:"rgba(0,0,0,0.2)", borderRadius:12, fontSize:12, color:"rgba(200,230,215,0.55)", lineHeight:1.6, fontStyle:"italic" }}>
-            "Dasani scores a D. Aquafina scores a D. Your body deserves better — and I'm going to show you exactly what to drink instead."
+            "Dasani scores a D. Aquafina scores a D. Your body deserves better and I am going to show you exactly what to drink instead."
           </div>
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:16 }}>
           {[
             { icon:"🔬", title:"Test My Water",  sub:"LSI Calculator",      id:"test",   color:"#00d4ff" },
             { icon:"💧", title:"Browse Brands",  sub:"40 brands analyzed",  id:"brands", color:"#63d39e" },
-            { icon:"🌆", title:"City Water",     sub:"100+ cities scored",  id:"cities", color:"#a78bfa" },
-            { icon:"📚", title:"Water Academy",  sub:"Science + Glossary",  id:"learn",  color:"#fbbf24" },
+            { icon:"🌆", title:"City Water",     sub:"96 cities scored",    id:"cities", color:"#a78bfa" },
+            { icon:"📚", title:"Water Academy",  sub:"Science plus Glossary", id:"learn", color:"#fbbf24" },
           ].map((item,i)=>(
             <button key={i} className="card" onClick={()=>setTab(item.id)} style={{ background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.07)", borderRadius:16, padding:14, textAlign:"left", animation:`fadeUp 0.4s ease ${i*0.07}s both` }}>
               <div style={{ fontSize:26, marginBottom:8 }}>{item.icon}</div>
@@ -342,9 +285,9 @@ export default function Flozek() {
           ))}
         </div>
         <div style={{ padding:14, background:"rgba(255,255,255,0.02)", borderRadius:14, border:"1px solid rgba(255,255,255,0.05)", marginBottom:12 }}>
-          <div style={{ fontSize:11, color:"rgba(200,230,215,0.35)", letterSpacing:2, textTransform:"uppercase", marginBottom:8 }}>📍 Coverage</div>
+          <div style={{ fontSize:11, color:"rgba(200,230,215,0.35)", letterSpacing:2, textTransform:"uppercase", marginBottom:8 }}>Coverage</div>
           <div style={{ display:"flex", flexWrap:"wrap", gap:5 }}>
-            {["Tri-State","NYC Metro","New Jersey","Connecticut","Lehigh Valley","Pennsylvania","Florida","Ohio","North Carolina","South Carolina","+ More"].map((tag,i)=>(
+            {["Tri-State","NYC Metro","New Jersey","Connecticut","Lehigh Valley","Pennsylvania","Florida","Ohio","North Carolina","South Carolina","Plus More"].map((tag,i)=>(
               <span key={i} style={{ padding:"3px 9px", background:"rgba(99,211,158,0.07)", border:"1px solid rgba(99,211,158,0.15)", borderRadius:20, fontSize:9, color:"#63d39e" }}>{tag}</span>
             ))}
           </div>
@@ -352,7 +295,7 @@ export default function Flozek() {
         <div style={{ padding:16, background:"rgba(255,255,255,0.02)", borderRadius:16, border:"1px solid rgba(255,255,255,0.05)", marginBottom:16 }}>
           <div style={{ fontSize:11, color:"rgba(200,230,215,0.35)", letterSpacing:2, textTransform:"uppercase", marginBottom:12 }}>LSI Health Scale</div>
           <div style={{ display:"flex", gap:5 }}>
-            {[["Aggressive","#ef4444","<-0.5"],["Low Mineral","#f97316","-0.5 to -0.2"],["Ideal ✓","#22c55e","-0.2 to 0.2"],["Scaling","#eab308",">0.2"]].map(([l,c,r],i)=>(
+            {[["Aggressive","#ef4444","below -0.5"],["Low Mineral","#f97316","-0.5 to -0.2"],["Ideal","#22c55e","-0.2 to 0.2"],["Scaling","#eab308","above 0.2"]].map(([l,c,r],i)=>(
               <div key={i} style={{ flex:1, textAlign:"center" }}>
                 <div style={{ height:5, background:c, borderRadius:3, marginBottom:5 }} />
                 <div style={{ fontSize:8, color:"rgba(200,230,215,0.5)" }}>{l}</div>
@@ -362,9 +305,9 @@ export default function Flozek() {
           </div>
         </div>
         <div style={{ padding:16, background:"linear-gradient(135deg,rgba(124,58,237,0.08),rgba(99,211,158,0.04))", borderRadius:16, border:"1px solid rgba(124,58,237,0.12)" }}>
-          <div style={{ fontSize:11, color:"#a78bfa", letterSpacing:2, textTransform:"uppercase", marginBottom:6 }}>🌍 Our Mission</div>
-          <div style={{ fontSize:13, color:"rgba(200,230,215,0.6)", lineHeight:1.7 }}>A portion of every Flo·zēk Pro subscription supports clean water access in underserved communities globally.</div>
-          <div style={{ marginTop:10, fontSize:13, color:"#63d39e", fontWeight:600 }}>Upgrade to Pro — $1.99/mo →</div>
+          <div style={{ fontSize:11, color:"#a78bfa", letterSpacing:2, textTransform:"uppercase", marginBottom:6 }}>Our Mission</div>
+          <div style={{ fontSize:13, color:"rgba(200,230,215,0.6)", lineHeight:1.7 }}>A portion of every Flozek Pro subscription supports clean water access in underserved communities globally.</div>
+          <div style={{ marginTop:10, fontSize:13, color:"#63d39e", fontWeight:600 }}>Upgrade to Pro 1.99 per month</div>
         </div>
       </div>
       <NavBar />
@@ -386,17 +329,16 @@ export default function Flozek() {
       { id:11, label:"High blood pressure", mineral:"Magnesium",   icon:"🩺" },
       { id:12, label:"Tooth sensitivity",   mineral:"Calcium",     icon:"🦷" },
     ];
-    const previewLSI    = calcLSI(calcVals);
+    const previewLSI = calcLSI(calcVals);
     const previewStatus = getLSIStatus(previewLSI);
-
     if (showResult) {
       const status = getLSIStatus(lsiResult);
       return (
         <div style={app}><style>{CSS}</style>
           <div style={{ padding:"52px 22px 0" }}>
             <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
-              <button className="btn" onClick={()=>setShowResult(false)} style={{ background:"rgba(255,255,255,0.06)", border:"none", color:"rgba(200,230,215,0.6)", padding:"8px 14px", borderRadius:20, fontSize:12 }}>← Back</button>
-              <div style={{ fontFamily:"'Syne',sans-serif", fontSize:16, fontWeight:800, color:"#e4ede8" }}>Walter's Analysis</div>
+              <button className="btn" onClick={()=>setShowResult(false)} style={{ background:"rgba(255,255,255,0.06)", border:"none", color:"rgba(200,230,215,0.6)", padding:"8px 14px", borderRadius:20, fontSize:12 }}>Back</button>
+              <div style={{ fontFamily:"'Syne',sans-serif", fontSize:16, fontWeight:800, color:"#e4ede8" }}>Walters Analysis</div>
               <div style={{ width:60 }} />
             </div>
             <div style={{ padding:24, background:status.bg, borderRadius:22, border:`1px solid ${status.color}30`, textAlign:"center", marginBottom:16, animation:"scaleIn 0.4s ease both" }}>
@@ -407,13 +349,13 @@ export default function Flozek() {
                 {lsiResult < -0.5 && "Walter says: This water is highly aggressive. It is actively pulling minerals from your body with every glass you drink."}
                 {lsiResult >= -0.5 && lsiResult < -0.2 && "Walter says: Mildly undersaturated water. Limited mineral contribution and mild depletion risk at normal intake."}
                 {lsiResult >= -0.2 && lsiResult <= 0.2 && "Walter says: Perfect balance. This water works with your body rather than against it. Well done."}
-                {lsiResult > 0.2 && "Walter says: High mineral content. Excellent for supplementation — consider rotating with lower-TDS water."}
+                {lsiResult > 0.2 && "Walter says: High mineral content. Excellent for supplementation. Consider rotating with lower-TDS water."}
               </div>
             </div>
             {lsiResult < -0.2 && (
               <div style={{ padding:16, background:"rgba(99,211,158,0.05)", borderRadius:16, border:"1px solid rgba(99,211,158,0.12)", marginBottom:14 }}>
                 <div style={{ fontSize:11, color:"#63d39e", letterSpacing:2, textTransform:"uppercase", marginBottom:10 }}>Walter Recommends</div>
-                {["Add mineral drops (magnesium, calcium)","Switch to a natural spring water brand","Use a remineralizing filter post-RO","Check the Brands tab for better options"].map((tip,i)=>(
+                {["Add mineral drops magnesium and calcium","Switch to a natural spring water brand","Use a remineralizing filter post-RO","Check the Brands tab for better options"].map((tip,i)=>(
                   <div key={i} style={{ display:"flex", gap:8, marginBottom:7 }}>
                     <span style={{ color:"#63d39e" }}>✓</span>
                     <span style={{ fontSize:12, color:"rgba(200,230,215,0.65)", lineHeight:1.6 }}>{tip}</span>
@@ -426,30 +368,106 @@ export default function Flozek() {
         </div>
       );
     }
-
     return (
       <div style={app}><style>{CSS}</style>
         <div style={{ padding:"52px 22px 0" }}>
-          <div style={{ fontFamily:"'Syne',sans-serif", fontSize:22, fontWeight:800, background:"linear-gradient
-        if (tab === "brands") {
+          <div style={{ fontFamily:"'Syne',sans-serif", fontSize:22, fontWeight:800, background:"linear-gradient(135deg,#00d4ff,#63d39e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:4 }}>Water Testing</div>
+          <div style={{ fontSize:13, color:"rgba(200,230,215,0.45)", marginBottom:16 }}>LSI Calculator and Symptom Checker</div>
+          <div style={{ padding:16, background:previewStatus.bg, borderRadius:16, border:`1px solid ${previewStatus.color}25`, marginBottom:16, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+            <div>
+              <div style={{ fontSize:10, color:"rgba(200,230,215,0.4)", letterSpacing:1, marginBottom:4 }}>LIVE LSI</div>
+              <div style={{ fontFamily:"'Syne',sans-serif", fontSize:42, fontWeight:800, color:previewStatus.color, lineHeight:1 }}>{previewLSI>0?"+":""}{previewLSI}</div>
+            </div>
+            <div style={{ textAlign:"right" }}>
+              <div style={{ fontSize:28 }}>{previewStatus.emoji}</div>
+              <div style={{ fontSize:13, color:previewStatus.color, fontWeight:600, marginTop:4 }}>{previewStatus.label}</div>
+            </div>
+          </div>
+          {[
+            { key:"pH",          label:"pH Level",                    min:5,   max:10,  step:0.1, unit:"" },
+            { key:"tds",         label:"TDS Total Dissolved Solids",  min:0,   max:1000,step:5,   unit:"mg/L" },
+            { key:"calcium",     label:"Calcium Hardness",             min:0,   max:500, step:5,   unit:"mg/L" },
+            { key:"bicarbonate", label:"Bicarbonate Alkalinity",       min:0,   max:500, step:5,   unit:"mg/L" },
+          ].map((p)=>(
+            <div key={p.key} style={{ padding:14, background:"rgba(255,255,255,0.025)", borderRadius:14, border:"1px solid rgba(255,255,255,0.05)", marginBottom:10 }}>
+              <div style={{ display:"flex", justifyContent:"space-between", marginBottom:8 }}>
+                <span style={{ fontSize:13, fontWeight:600, color:"rgba(220,240,228,0.85)" }}>{p.label}</span>
+                <span style={{ fontSize:18, fontWeight:700, color:"#00d4ff" }}>{calcVals[p.key]}<span style={{ fontSize:11, color:"rgba(200,230,215,0.4)" }}> {p.unit}</span></span>
+              </div>
+              <input type="range" min={p.min} max={p.max} step={p.step} value={calcVals[p.key]}
+                onChange={e=>setCalcVals(prev=>({...prev,[p.key]:parseFloat(e.target.value)}))}
+                style={{ background:`linear-gradient(to right,#00d4ff ${((calcVals[p.key]-p.min)/(p.max-p.min))*100}%,rgba(255,255,255,0.1) 0%)` }} />
+            </div>
+          ))}
+          <button className="btn" onClick={()=>{ setLsiResult(previewLSI); setShowResult(true); }} style={{ width:"100%", padding:"16px", background:"linear-gradient(135deg,#00d4ff,#0099cc)", border:"none", borderRadius:14, fontSize:15, fontWeight:700, color:"#040d1a", marginBottom:14, boxShadow:"0 8px 28px rgba(0,212,255,0.2)" }}>
+            Ask Walter to Analyze
+          </button>
+          <div style={{ padding:16, background:"rgba(255,107,53,0.06)", borderRadius:16, border:"1px solid rgba(255,107,53,0.15)" }}>
+            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:showSymptoms?12:0 }}>
+              <div style={{ fontSize:13, fontWeight:700, color:"#ff6b35" }}>Symptom Checker</div>
+              <button className="btn" onClick={()=>setShowSymptoms(!showSymptoms)} style={{ background:"rgba(255,107,53,0.15)", border:"1px solid rgba(255,107,53,0.3)", color:"#ff6b35", padding:"5px 10px", borderRadius:10, fontSize:11 }}>
+                {showSymptoms?"Hide":"Open"}
+              </button>
+            </div>
+            {showSymptoms && (
+              <div style={{ animation:"fadeUp 0.3s ease both" }}>
+                <div style={{ fontSize:12, color:"rgba(200,230,215,0.5)", marginBottom:10 }}>Select symptoms you experience:</div>
+                <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8, marginBottom:12 }}>
+                  {SYMPTOMS.map(s=>{
+                    const sel = selSymptoms.includes(s.id);
+                    return (
+                      <button key={s.id} className="card" onClick={()=>setSelSymptoms(prev=>sel?prev.filter(id=>id!==s.id):[...prev,s.id])} style={{ padding:"10px", background:sel?"rgba(255,107,53,0.1)":"rgba(255,255,255,0.03)", border:`1px solid ${sel?"rgba(255,107,53,0.3)":"rgba(255,255,255,0.06)"}`, borderRadius:11, textAlign:"left" }}>
+                        <div style={{ fontSize:18, marginBottom:3 }}>{s.icon}</div>
+                        <div style={{ fontSize:11, fontWeight:600, color:sel?"#ff6b35":"rgba(220,240,228,0.7)" }}>{s.label}</div>
+                      </button>
+                    );
+                  })}
+                </div>
+                {selSymptoms.length > 0 && (
+                  <button className="btn" onClick={()=>{
+                    const mins = {};
+                    selSymptoms.forEach(id=>{ const s=SYMPTOMS.find(s=>s.id===id); if(s) mins[s.mineral]=(mins[s.mineral]||0)+1; });
+                    const top = Object.entries(mins).sort((a,b)=>b[1]-a[1])[0];
+                    setSymptomRes({ mineral:top[0], count:selSymptoms.length });
+                  }} style={{ width:"100%", padding:"13px", background:"linear-gradient(135deg,#ff6b35,#cc4400)", border:"none", borderRadius:12, fontSize:14, fontWeight:700, color:"white" }}>
+                    Ask Walter Analyze {selSymptoms.length} Symptom{selSymptoms.length>1?"s":""}
+                  </button>
+                )}
+                {symptomRes && (
+                  <div style={{ marginTop:12, padding:14, background:"rgba(255,107,53,0.08)", borderRadius:12, border:"1px solid rgba(255,107,53,0.15)" }}>
+                    <div style={{ fontSize:13, fontWeight:700, color:"#ff6b35", marginBottom:6 }}>Walters Verdict</div>
+                    <div style={{ fontSize:12, color:"rgba(200,230,215,0.7)", lineHeight:1.7 }}>
+                      Based on {symptomRes.count} symptoms, Walter suspects a <strong style={{ color:"#ff6b35" }}>{symptomRes.mineral} deficiency</strong> commonly linked to aggressive or low-mineral water consumption. Test your LSI score above to confirm.
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+        <NavBar />
+      </div>
+    );
+  }
+
+  if (tab === "brands") {
     const filtered = WATER_DB
       .filter(w => brandTier === "all" || w.tier === brandTier)
       .filter(w => w.name.toLowerCase().includes(brandSearch.toLowerCase()))
-      .map(w => ({ ...w, score: getScore(w), lsi: calcLSI({ pH:w.pH, tds:w.tds, calcium:w.calcium, bicarbonate:w.bicarbonate }) }))
+      .map(w => ({ ...w, score: getScore(w), lsi: calcLSI(w) }))
       .sort((a,b) => brandSort === "score" ? b.score - a.score : brandSort === "price" ? a.price - b.price : brandSort === "calcium" ? b.calcium - a.calcium : b.magnesium - a.magnesium);
-
     if (selBrand) {
-      const w = { ...selBrand, score: getScore(selBrand), lsi: calcLSI({ pH:selBrand.pH, tds:selBrand.tds, calcium:selBrand.calcium, bicarbonate:selBrand.bicarbonate }) };
+      const w = { ...selBrand, score: getScore(selBrand), lsi: calcLSI(selBrand) };
       const grade = getGrade(w.score);
       const status = getLSIStatus(w.lsi);
       return (
         <div style={app}><style>{CSS}</style>
           <div style={{ padding:"52px 22px 0" }}>
-            <button className="btn" onClick={()=>setSelBrand(null)} style={{ background:"rgba(255,255,255,0.06)", border:"none", color:"rgba(200,230,215,0.6)", padding:"8px 14px", borderRadius:20, fontSize:12, marginBottom:18 }}>← All Brands</button>
+            <button className="btn" onClick={()=>setSelBrand(null)} style={{ background:"rgba(255,255,255,0.06)", border:"none", color:"rgba(200,230,215,0.6)", padding:"8px 14px", borderRadius:20, fontSize:12, marginBottom:18 }}>All Brands</button>
             <div style={{ textAlign:"center", marginBottom:20, animation:"scaleIn 0.35s ease both" }}>
               <div style={{ fontSize:56, marginBottom:6 }}>{w.logo}</div>
               <div style={{ fontFamily:"'Syne',sans-serif", fontSize:24, fontWeight:800, color:"#e4ede8" }}>{w.name}</div>
-              <div style={{ fontSize:12, color:"rgba(200,230,215,0.4)", marginTop:4 }}>{w.type} · {w.origin}</div>
+              <div style={{ fontSize:12, color:"rgba(200,230,215,0.4)", marginTop:4 }}>{w.type} from {w.origin}</div>
               <div style={{ display:"flex", justifyContent:"center", gap:12, marginTop:14 }}>
                 <div style={{ textAlign:"center" }}>
                   <div style={{ fontFamily:"'Syne',sans-serif", fontSize:42, fontWeight:800, color:grade.color }}>{grade.grade}</div>
@@ -470,11 +488,11 @@ export default function Flozek() {
             <div style={{ padding:16, background:"rgba(255,255,255,0.03)", borderRadius:18, border:"1px solid rgba(255,255,255,0.07)", marginBottom:14 }}>
               <div style={{ fontSize:11, color:"rgba(200,230,215,0.4)", letterSpacing:2, textTransform:"uppercase", marginBottom:10 }}>Mineral Profile</div>
               {[
-                { label:"Calcium",     val:w.calcium,     max:500, unit:"mg/L", color:"#fbbf24" },
-                { label:"Magnesium",   val:w.magnesium,   max:130, unit:"mg/L", color:"#34d399" },
-                { label:"Bicarbonate", val:w.bicarbonate, max:1820,unit:"mg/L", color:"#60a5fa" },
-                { label:"Sodium",      val:w.sodium,      max:410, unit:"mg/L", color:"#f97316" },
-                { label:"TDS",         val:w.tds,         max:2527,unit:"mg/L", color:"#a78bfa" },
+                { label:"Calcium",     val:w.calcium,     max:500,  unit:"mg/L", color:"#fbbf24" },
+                { label:"Magnesium",   val:w.magnesium,   max:130,  unit:"mg/L", color:"#34d399" },
+                { label:"Bicarbonate", val:w.bicarbonate, max:1820, unit:"mg/L", color:"#60a5fa" },
+                { label:"Sodium",      val:w.sodium,      max:410,  unit:"mg/L", color:"#f97316" },
+                { label:"TDS",         val:w.tds,         max:2527, unit:"mg/L", color:"#a78bfa" },
               ].map((m,i)=>(
                 <div key={i} style={{ marginBottom:10 }}>
                   <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
@@ -513,25 +531,20 @@ export default function Flozek() {
         </div>
       );
     }
-
     return (
       <div style={app}><style>{CSS}</style>
         <div style={{ padding:"52px 22px 0" }}>
           <div style={{ fontFamily:"'Syne',sans-serif", fontSize:22, fontWeight:800, background:"linear-gradient(135deg,#63d39e,#a8f0c8)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:4 }}>Brand Intelligence</div>
-          <div style={{ fontSize:13, color:"rgba(200,230,215,0.45)", marginBottom:14 }}>40 brands · Walter graded</div>
+          <div style={{ fontSize:13, color:"rgba(200,230,215,0.45)", marginBottom:14 }}>40 brands Walter graded</div>
           <input value={brandSearch} onChange={e=>setBrandSearch(e.target.value)} placeholder="Search brands..." style={{ width:"100%", padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, fontSize:13, color:"#e4ede8", marginBottom:12 }} />
           <div style={{ display:"flex", gap:6, marginBottom:10, flexWrap:"wrap" }}>
             {[["all","All"],["premium","Premium"],["midtier","Mid"],["specialty","Special"],["budget","Budget"]].map(([v,l])=>(
-              <button key={v} className="btn" onClick={()=>setBrandTier(v)} style={{ padding:"6px 12px", background:brandTier===v?"rgba(99,211,158,0.15)":"rgba(255,255,255,0.04)", border:`1px solid ${brandTier===v?"rgba(99,211,158,0.4)":"rgba(255,255,255,0.08)"}`, borderRadius:20, fontSize:11, color:brandTier===v?"#63d39e":"rgba(200,230,215,0.5)" }}>
-                {l}
-              </button>
+              <button key={v} className="btn" onClick={()=>setBrandTier(v)} style={{ padding:"6px 12px", background:brandTier===v?"rgba(99,211,158,0.15)":"rgba(255,255,255,0.04)", border:`1px solid ${brandTier===v?"rgba(99,211,158,0.4)":"rgba(255,255,255,0.08)"}`, borderRadius:20, fontSize:11, color:brandTier===v?"#63d39e":"rgba(200,230,215,0.5)" }}>{l}</button>
             ))}
           </div>
           <div style={{ display:"flex", gap:6, marginBottom:14 }}>
             {[["score","Score"],["price","Price"],["calcium","Calcium"],["magnesium","Magnesium"]].map(([v,l])=>(
-              <button key={v} className="btn" onClick={()=>setBrandSort(v)} style={{ padding:"5px 10px", background:brandSort===v?"rgba(0,212,255,0.12)":"rgba(255,255,255,0.03)", border:`1px solid ${brandSort===v?"rgba(0,212,255,0.3)":"rgba(255,255,255,0.06)"}`, borderRadius:16, fontSize:10, color:brandSort===v?"#00d4ff":"rgba(200,230,215,0.4)" }}>
-                {l}
-              </button>
+              <button key={v} className="btn" onClick={()=>setBrandSort(v)} style={{ padding:"5px 10px", background:brandSort===v?"rgba(0,212,255,0.12)":"rgba(255,255,255,0.03)", border:`1px solid ${brandSort===v?"rgba(0,212,255,0.3)":"rgba(255,255,255,0.06)"}`, borderRadius:16, fontSize:10, color:brandSort===v?"#00d4ff":"rgba(200,230,215,0.4)" }}>{l}</button>
             ))}
           </div>
           <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -549,7 +562,7 @@ export default function Flozek() {
                     <div style={{ display:"flex", gap:6, alignItems:"center", flexWrap:"wrap" }}>
                       <span style={{ fontSize:10, color:status.color }}>{status.emoji} LSI {w.lsi>0?"+":""}{w.lsi}</span>
                       <span style={{ fontSize:9, color:"rgba(200,230,215,0.25)" }}>·</span>
-                      <span style={{ fontSize:10, color:"rgba(200,230,215,0.4)" }}>Ca {w.calcium} · Mg {w.magnesium}</span>
+                      <span style={{ fontSize:10, color:"rgba(200,230,215,0.4)" }}>Ca {w.calcium} Mg {w.magnesium}</span>
                       <span style={{ fontSize:9, color:"rgba(200,230,215,0.25)" }}>·</span>
                       <span style={{ fontSize:10, color:"rgba(200,230,215,0.4)" }}>${w.price}/L</span>
                     </div>
@@ -567,33 +580,32 @@ export default function Flozek() {
 
   if (tab === "cities") {
     const REGIONS = [
-      { id:"all",      label:"All Cities"   },
-      { id:"tristate", label:"Tri-State"    },
-      { id:"ny",       label:"NY State"     },
-      { id:"nj",       label:"New Jersey"   },
-      { id:"ct",       label:"Connecticut"  },
-      { id:"lehigh",   label:"Lehigh Valley"},
-      { id:"pa",       label:"Pennsylvania" },
-      { id:"fl",       label:"Florida"      },
-      { id:"oh",       label:"Ohio"         },
-      { id:"nc",       label:"N. Carolina"  },
-      { id:"sc",       label:"S. Carolina"  },
-      { id:"south",    label:"South"        },
-      { id:"west",     label:"West"         },
-      { id:"midwest",  label:"Midwest"      },
-      { id:"northeast",label:"Northeast"    },
+      { id:"all",      label:"All Cities"    },
+      { id:"tristate", label:"Tri-State"     },
+      { id:"ny",       label:"NY State"      },
+      { id:"nj",       label:"New Jersey"    },
+      { id:"ct",       label:"Connecticut"   },
+      { id:"lehigh",   label:"Lehigh Valley" },
+      { id:"pa",       label:"Pennsylvania"  },
+      { id:"fl",       label:"Florida"       },
+      { id:"oh",       label:"Ohio"          },
+      { id:"nc",       label:"N Carolina"    },
+      { id:"sc",       label:"S Carolina"    },
+      { id:"south",    label:"South"         },
+      { id:"west",     label:"West"          },
+      { id:"midwest",  label:"Midwest"       },
+      { id:"northeast",label:"Northeast"     },
     ];
     const filteredCities = CITIES
       .filter(c => cityRegion === "all" || c.region === cityRegion)
       .filter(c => c.name.toLowerCase().includes(citySearch.toLowerCase()));
-
     if (selCity) {
-      const lsi = calcLSI({ pH:selCity.pH, tds:selCity.tds, calcium:selCity.calcium, bicarbonate:selCity.bicarbonate });
+      const lsi = calcLSI(selCity);
       const status = getLSIStatus(lsi);
       return (
         <div style={app}><style>{CSS}</style>
           <div style={{ padding:"52px 22px 0" }}>
-            <button className="btn" onClick={()=>setSelCity(null)} style={{ background:"rgba(255,255,255,0.06)", border:"none", color:"rgba(200,230,215,0.6)", padding:"8px 14px", borderRadius:20, fontSize:12, marginBottom:18 }}>← All Cities</button>
+            <button className="btn" onClick={()=>setSelCity(null)} style={{ background:"rgba(255,255,255,0.06)", border:"none", color:"rgba(200,230,215,0.6)", padding:"8px 14px", borderRadius:20, fontSize:12, marginBottom:18 }}>All Cities</button>
             <div style={{ textAlign:"center", marginBottom:20 }}>
               <div style={{ fontSize:44, marginBottom:6 }}>🌆</div>
               <div style={{ fontFamily:"'Syne',sans-serif", fontSize:24, fontWeight:800, color:"#e4ede8" }}>{selCity.name}</div>
@@ -631,10 +643,10 @@ export default function Flozek() {
                   <div style={{ fontSize:11, color:"#63d39e", fontWeight:700, marginBottom:4 }}>WALTER SAYS</div>
                   <div style={{ fontSize:12, color:"rgba(200,230,215,0.7)", lineHeight:1.7 }}>
                     {lsi < -0.2
-                      ? `${selCity.name} tap water is aggressive (LSI ${lsi}). Consider filtering and remineralizing, or supplement with a high-mineral bottled water.`
+                      ? `${selCity.name} tap water is aggressive LSI ${lsi}. Consider filtering and remineralizing or supplement with a high-mineral bottled water.`
                       : lsi <= 0.2
-                      ? `${selCity.name} tap water is well balanced (LSI ${lsi}). One of the better municipal supplies. You can drink confidently with a standard filter.`
-                      : `${selCity.name} tap water is mineral-rich (LSI ${lsi}). High TDS may cause scaling. A quality carbon filter is recommended.`}
+                      ? `${selCity.name} tap water is well balanced LSI ${lsi}. One of the better municipal supplies. You can drink confidently with a standard filter.`
+                      : `${selCity.name} tap water is mineral-rich LSI ${lsi}. High TDS may cause scaling. A quality carbon filter is recommended.`}
                   </div>
                 </div>
               </div>
@@ -644,7 +656,6 @@ export default function Flozek() {
         </div>
       );
     }
-
     return (
       <div style={app}><style>{CSS}</style>
         <div style={{ padding:"52px 22px 0" }}>
@@ -653,14 +664,12 @@ export default function Flozek() {
           <input value={citySearch} onChange={e=>setCitySearch(e.target.value)} placeholder="Search your city..." style={{ width:"100%", padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, fontSize:13, color:"#e4ede8", marginBottom:12 }} />
           <div style={{ display:"flex", gap:6, marginBottom:14, flexWrap:"wrap" }}>
             {REGIONS.map(r=>(
-              <button key={r.id} className="btn" onClick={()=>setCityRegion(r.id)} style={{ padding:"6px 11px", background:cityRegion===r.id?"rgba(167,139,250,0.15)":"rgba(255,255,255,0.04)", border:`1px solid ${cityRegion===r.id?"rgba(167,139,250,0.4)":"rgba(255,255,255,0.08)"}`, borderRadius:20, fontSize:10, color:cityRegion===r.id?"#a78bfa":"rgba(200,230,215,0.5)" }}>
-                {r.label}
-              </button>
+              <button key={r.id} className="btn" onClick={()=>setCityRegion(r.id)} style={{ padding:"6px 11px", background:cityRegion===r.id?"rgba(167,139,250,0.15)":"rgba(255,255,255,0.04)", border:`1px solid ${cityRegion===r.id?"rgba(167,139,250,0.4)":"rgba(255,255,255,0.08)"}`, borderRadius:20, fontSize:10, color:cityRegion===r.id?"#a78bfa":"rgba(200,230,215,0.5)" }}>{r.label}</button>
             ))}
           </div>
           <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
             {filteredCities.map((c,i)=>{
-              const lsi = calcLSI({ pH:c.pH, tds:c.tds, calcium:c.calcium, bicarbonate:c.bicarbonate });
+              const lsi = calcLSI(c);
               const status = getLSIStatus(lsi);
               return (
                 <button key={i} className="card" onClick={()=>setSelCity(c)} style={{ background:"rgba(255,255,255,0.025)", border:"1px solid rgba(255,255,255,0.06)", borderRadius:14, padding:"12px 14px", textAlign:"left", animation:`fadeUp 0.3s ease ${Math.min(i*0.03,0.3)}s both`, display:"flex", alignItems:"center", gap:12 }}>
@@ -673,7 +682,7 @@ export default function Flozek() {
                     <div style={{ display:"flex", gap:6 }}>
                       <span style={{ fontSize:10, color:status.color }}>{status.emoji} {status.label}</span>
                       <span style={{ fontSize:9, color:"rgba(200,230,215,0.25)" }}>·</span>
-                      <span style={{ fontSize:10, color:"rgba(200,230,215,0.35)" }}>pH {c.pH} · Ca {c.calcium} mg/L</span>
+                      <span style={{ fontSize:10, color:"rgba(200,230,215,0.35)" }}>pH {c.pH} Ca {c.calcium} mg/L</span>
                     </div>
                   </div>
                   <div style={{ fontSize:11, color:"rgba(200,230,215,0.25)" }}>›</div>
@@ -685,38 +694,35 @@ export default function Flozek() {
         <NavBar />
       </div>
     );
-                }
-          const LESSONS = [
-    { title:"What is LSI?", icon:"🔬", color:"#00d4ff", time:"3 min", content:"The Langelier Saturation Index (LSI) was developed by Dr. Wilfred Langelier in 1936. It measures whether water is corrosive (negative), balanced (near zero), or scale-forming (positive). Water with a negative LSI actively dissolves minerals it contacts — including calcium in your teeth and bones. Most purified bottled waters score between −1.0 and −2.0, meaning they are aggressively stripping minerals. The ideal LSI range is −0.2 to +0.2. At this level water is in equilibrium with your body and neither deposits nor removes minerals." },
-    { title:"The Mineral Gap", icon:"⚡", color:"#63d39e", time:"4 min", content:"Up to 50% of Americans are deficient in magnesium. The WHO recommends drinking water contain a minimum of 50–100 mg/L calcium and 25–50 mg/L magnesium. Most bottled waters fail this standard completely. Dasani, Aquafina, and Smartwater contain zero magnesium and zero calcium. Gerolsteiner contains 348 mg/L calcium and 108 mg/L magnesium — meeting WHO standards in a single liter. The minerals you get from water are more bioavailable than those from food or supplements because they are already in ionic form, ready for direct cellular absorption." },
-    { title:"Hard vs Soft Water", icon:"💎", color:"#a78bfa", time:"3 min", content:"Hard water contains high concentrations of calcium and magnesium. Soft water contains very little. Epidemiological studies have consistently shown that populations drinking hard water have lower rates of cardiovascular disease than those drinking soft water. The landmark WHO report on drinking water quality concluded that water hardness is inversely associated with heart disease mortality. Las Vegas tap water is very hard at 550 TDS — high mineral content. Seattle tap water is very soft at 45 TDS. Neither extreme is ideal — the sweet spot is 150–400 TDS from natural mineral sources." },
-    { title:"pH and Your Body", icon:"⚗️", color:"#fbbf24", time:"3 min", content:"Your blood maintains a precise pH of 7.35–7.45. Your body expends significant energy maintaining this balance. Drinking highly acidic water (pH below 6.5) adds an acid load your kidneys must neutralize. Aquafina at pH 6.0 and LaCroix at pH 4.7 are both acidic. Natural alkaline spring waters like Evian (pH 7.2) and Mountain Valley (pH 7.8) align with your body's natural chemistry. Artificially alkaline waters like Essentia use ionization to raise pH without adding minerals — the alkalinity is not backed by the bicarbonate buffer that makes natural alkaline water beneficial." },
-    { title:"Reading Water Labels", icon:"📋", color:"#34d399", time:"4 min", content:"Every bottled water label tells a story. Look for: Source (spring vs purified tap vs artesian), Mineral content (calcium, magnesium, sodium, bicarbonate listed in mg/L), TDS (total dissolved solids — the sum of all minerals), pH (ideally 7.0–8.5). Red flags: purified or distilled without remineralization, zero or near-zero TDS, pH below 6.5, no mineral panel listed at all. Green flags: natural spring or artesian, calcium above 50 mg/L, magnesium above 20 mg/L, bicarbonate above 100 mg/L, pH between 7.2 and 8.5." },
-    { title:"Municipal vs Bottled", icon:"🏙️", color:"#f97316", time:"4 min", content:"US municipal tap water is among the most regulated in the world under the Safe Drinking Water Act. The EPA sets maximum contaminant levels for over 90 substances. However, tap water is not optimized for mineral content — it is optimized for safety. NYC tap water scores an LSI of approximately −0.6 — mildly aggressive. Chicago tap water from Lake Michigan is more balanced. The real differentiator is not safety but mineral optimization. Filtering tap water with a carbon filter removes chlorine and taste issues. Adding mineral drops post-filter can bring tap water close to premium spring water quality at a fraction of the cost." },
+  }
+
+  const LESSONS = [
+    { title:"What is LSI", icon:"🔬", color:"#00d4ff", time:"3 min", content:"The Langelier Saturation Index was developed by Dr. Wilfred Langelier in 1936. It measures whether water is corrosive, balanced, or scale-forming. Water with a negative LSI actively dissolves minerals it contacts including calcium in your teeth and bones. Most purified bottled waters score between -1.0 and -2.0, meaning they are aggressively stripping minerals. The ideal LSI range is -0.2 to +0.2. At this level water is in equilibrium with your body and neither deposits nor removes minerals." },
+    { title:"The Mineral Gap", icon:"⚡", color:"#63d39e", time:"4 min", content:"Up to 50% of Americans are deficient in magnesium. The WHO recommends drinking water contain a minimum of 50-100 mg/L calcium and 25-50 mg/L magnesium. Most bottled waters fail this standard completely. Dasani, Aquafina, and Smartwater contain zero magnesium and zero calcium. Gerolsteiner contains 348 mg/L calcium and 108 mg/L magnesium meeting WHO standards in a single liter. The minerals you get from water are more bioavailable than those from food or supplements because they are already in ionic form ready for direct cellular absorption." },
+    { title:"Hard vs Soft Water", icon:"💎", color:"#a78bfa", time:"3 min", content:"Hard water contains high concentrations of calcium and magnesium. Soft water contains very little. Epidemiological studies have consistently shown that populations drinking hard water have lower rates of cardiovascular disease than those drinking soft water. The landmark WHO report on drinking water quality concluded that water hardness is inversely associated with heart disease mortality. Las Vegas tap water is very hard at 550 TDS. Seattle tap water is very soft at 45 TDS. The sweet spot is 150-400 TDS from natural mineral sources." },
+    { title:"pH and Your Body", icon:"⚗️", color:"#fbbf24", time:"3 min", content:"Your blood maintains a precise pH of 7.35-7.45. Drinking highly acidic water below pH 6.5 adds an acid load your kidneys must neutralize. Aquafina at pH 6.0 and LaCroix at pH 4.7 are both acidic. Natural alkaline spring waters like Evian pH 7.2 and Mountain Valley pH 7.8 align with your body chemistry. Artificially alkaline waters like Essentia use ionization to raise pH without adding minerals. The alkalinity is not backed by the bicarbonate buffer that makes natural alkaline water beneficial." },
+    { title:"Reading Water Labels", icon:"📋", color:"#34d399", time:"4 min", content:"Every bottled water label tells a story. Look for source which can be spring, purified tap, or artesian. Check mineral content including calcium, magnesium, sodium, and bicarbonate in mg/L. Check TDS which is the sum of all minerals. Check pH which should ideally be 7.0-8.5. Red flags include purified or distilled without remineralization, zero or near-zero TDS, pH below 6.5. Green flags include natural spring or artesian source, calcium above 50 mg/L, magnesium above 20 mg/L, bicarbonate above 100 mg/L." },
+    { title:"Municipal vs Bottled", icon:"🏙️", color:"#f97316", time:"4 min", content:"US municipal tap water is among the most regulated in the world under the Safe Drinking Water Act. The EPA sets maximum contaminant levels for over 90 substances. However tap water is optimized for safety not mineral content. NYC tap water scores an LSI of approximately -0.6 which is mildly aggressive. The real differentiator is mineral optimization not safety. Filtering tap water with a carbon filter removes chlorine and taste issues. Adding mineral drops post-filter can bring tap water close to premium spring water quality at a fraction of the cost." },
   ];
 
   if (tab === "learn") {
     const lesson = LESSONS[eduIdx];
-    const gItem  = GLOSSARY[glossaryIdx];
+    const gItem = GLOSSARY[glossaryIdx];
     return (
       <div style={app}><style>{CSS}</style>
         <div style={{ padding:"52px 22px 0" }}>
           <div style={{ fontFamily:"'Syne',sans-serif", fontSize:22, fontWeight:800, background:"linear-gradient(135deg,#fbbf24,#f97316)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:4 }}>Water Academy</div>
-          <div style={{ fontSize:13, color:"rgba(200,230,215,0.45)", marginBottom:16 }}>Science · Glossary · Definitions</div>
+          <div style={{ fontSize:13, color:"rgba(200,230,215,0.45)", marginBottom:16 }}>Science Glossary Definitions</div>
           <div style={{ display:"flex", gap:8, marginBottom:18 }}>
-            {[["academy","📖 Science"],["glossary","📘 Glossary"]].map(([id,label])=>(
-              <button key={id} className="btn" onClick={()=>setLearnTab(id)} style={{ flex:1, padding:"10px", background:learnTab===id?"rgba(251,191,36,0.12)":"rgba(255,255,255,0.04)", border:`1px solid ${learnTab===id?"rgba(251,191,36,0.35)":"rgba(255,255,255,0.08)"}`, borderRadius:12, fontSize:12, fontWeight:learnTab===id?700:400, color:learnTab===id?"#fbbf24":"rgba(200,230,215,0.5)" }}>
-                {label}
-              </button>
+            {[["academy","Science"],["glossary","Glossary"]].map(([id,label])=>(
+              <button key={id} className="btn" onClick={()=>setLearnTab(id)} style={{ flex:1, padding:"10px", background:learnTab===id?"rgba(251,191,36,0.12)":"rgba(255,255,255,0.04)", border:`1px solid ${learnTab===id?"rgba(251,191,36,0.35)":"rgba(255,255,255,0.08)"}`, borderRadius:12, fontSize:12, fontWeight:learnTab===id?700:400, color:learnTab===id?"#fbbf24":"rgba(200,230,215,0.5)" }}>{label}</button>
             ))}
           </div>
           {learnTab === "academy" && (
             <div style={{ animation:"fadeUp 0.3s ease both" }}>
               <div style={{ display:"flex", gap:6, marginBottom:14, flexWrap:"wrap" }}>
                 {LESSONS.map((l,i)=>(
-                  <button key={i} className="btn" onClick={()=>setEduIdx(i)} style={{ padding:"6px 10px", background:eduIdx===i?"rgba(251,191,36,0.12)":"rgba(255,255,255,0.04)", border:`1px solid ${eduIdx===i?"rgba(251,191,36,0.3)":"rgba(255,255,255,0.08)"}`, borderRadius:20, fontSize:10, color:eduIdx===i?"#fbbf24":"rgba(200,230,215,0.45)" }}>
-                    {l.icon} {l.title}
-                  </button>
+                  <button key={i} className="btn" onClick={()=>setEduIdx(i)} style={{ padding:"6px 10px", background:eduIdx===i?"rgba(251,191,36,0.12)":"rgba(255,255,255,0.04)", border:`1px solid ${eduIdx===i?"rgba(251,191,36,0.3)":"rgba(255,255,255,0.08)"}`, borderRadius:20, fontSize:10, color:eduIdx===i?"#fbbf24":"rgba(200,230,215,0.45)" }}>{l.icon} {l.title}</button>
                 ))}
               </div>
               <div style={{ padding:20, background:"rgba(255,255,255,0.03)", borderRadius:20, border:"1px solid rgba(255,255,255,0.07)", animation:"scaleIn 0.3s ease both" }}>
@@ -725,14 +731,14 @@ export default function Flozek() {
                     <div style={{ fontSize:32, marginBottom:6 }}>{lesson.icon}</div>
                     <div style={{ fontFamily:"'Syne',sans-serif", fontSize:18, fontWeight:800, color:"#e4ede8" }}>{lesson.title}</div>
                   </div>
-                  <span style={{ padding:"4px 10px", background:"rgba(255,255,255,0.06)", borderRadius:20, fontSize:10, color:"rgba(200,230,215,0.4)" }}>⏱ {lesson.time}</span>
+                  <span style={{ padding:"4px 10px", background:"rgba(255,255,255,0.06)", borderRadius:20, fontSize:10, color:"rgba(200,230,215,0.4)" }}>{lesson.time}</span>
                 </div>
                 <div style={{ fontSize:13, color:"rgba(200,230,215,0.65)", lineHeight:1.85 }}>{lesson.content}</div>
               </div>
               <div style={{ display:"flex", justifyContent:"space-between", marginTop:12 }}>
-                <button className="btn" onClick={()=>setEduIdx(Math.max(0,eduIdx-1))} disabled={eduIdx===0} style={{ padding:"10px 18px", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, fontSize:12, color:eduIdx===0?"rgba(200,230,215,0.2)":"rgba(200,230,215,0.6)", cursor:eduIdx===0?"not-allowed":"pointer" }}>← Previous</button>
-                <span style={{ fontSize:11, color:"rgba(200,230,215,0.3)", alignSelf:"center" }}>{eduIdx+1} / {LESSONS.length}</span>
-                <button className="btn" onClick={()=>setEduIdx(Math.min(LESSONS.length-1,eduIdx+1))} disabled={eduIdx===LESSONS.length-1} style={{ padding:"10px 18px", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, fontSize:12, color:eduIdx===LESSONS.length-1?"rgba(200,230,215,0.2)":"rgba(200,230,215,0.6)", cursor:eduIdx===LESSONS.length-1?"not-allowed":"pointer" }}>Next →</button>
+                <button className="btn" onClick={()=>setEduIdx(Math.max(0,eduIdx-1))} disabled={eduIdx===0} style={{ padding:"10px 18px", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, fontSize:12, color:eduIdx===0?"rgba(200,230,215,0.2)":"rgba(200,230,215,0.6)", cursor:eduIdx===0?"not-allowed":"pointer" }}>Previous</button>
+                <span style={{ fontSize:11, color:"rgba(200,230,215,0.3)", alignSelf:"center" }}>{eduIdx+1} of {LESSONS.length}</span>
+                <button className="btn" onClick={()=>setEduIdx(Math.min(LESSONS.length-1,eduIdx+1))} disabled={eduIdx===LESSONS.length-1} style={{ padding:"10px 18px", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, fontSize:12, color:eduIdx===LESSONS.length-1?"rgba(200,230,215,0.2)":"rgba(200,230,215,0.6)", cursor:eduIdx===LESSONS.length-1?"not-allowed":"pointer" }}>Next</button>
               </div>
             </div>
           )}
@@ -740,9 +746,7 @@ export default function Flozek() {
             <div style={{ animation:"fadeUp 0.3s ease both" }}>
               <div style={{ display:"flex", gap:6, marginBottom:14, flexWrap:"wrap" }}>
                 {GLOSSARY.map((g,i)=>(
-                  <button key={i} className="btn" onClick={()=>setGlossaryIdx(i)} style={{ padding:"6px 10px", background:glossaryIdx===i?"rgba(99,211,158,0.12)":"rgba(255,255,255,0.04)", border:`1px solid ${glossaryIdx===i?"rgba(99,211,158,0.35)":"rgba(255,255,255,0.08)"}`, borderRadius:20, fontSize:10, color:glossaryIdx===i?"#63d39e":"rgba(200,230,215,0.45)" }}>
-                    {g.icon} {g.term}
-                  </button>
+                  <button key={i} className="btn" onClick={()=>setGlossaryIdx(i)} style={{ padding:"6px 10px", background:glossaryIdx===i?"rgba(99,211,158,0.12)":"rgba(255,255,255,0.04)", border:`1px solid ${glossaryIdx===i?"rgba(99,211,158,0.35)":"rgba(255,255,255,0.08)"}`, borderRadius:20, fontSize:10, color:glossaryIdx===i?"#63d39e":"rgba(200,230,215,0.45)" }}>{g.icon} {g.term}</button>
                 ))}
               </div>
               <div style={{ padding:20, background:"rgba(255,255,255,0.03)", borderRadius:20, border:"1px solid rgba(255,255,255,0.07)", animation:"scaleIn 0.3s ease both" }}>
@@ -760,9 +764,9 @@ export default function Flozek() {
                 </div>
               </div>
               <div style={{ display:"flex", justifyContent:"space-between", marginTop:12 }}>
-                <button className="btn" onClick={()=>setGlossaryIdx(Math.max(0,glossaryIdx-1))} disabled={glossaryIdx===0} style={{ padding:"10px 18px", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, fontSize:12, color:glossaryIdx===0?"rgba(200,230,215,0.2)":"rgba(200,230,215,0.6)", cursor:glossaryIdx===0?"not-allowed":"pointer" }}>← Previous</button>
-                <span style={{ fontSize:11, color:"rgba(200,230,215,0.3)", alignSelf:"center" }}>{glossaryIdx+1} / {GLOSSARY.length}</span>
-                <button className="btn" onClick={()=>setGlossaryIdx(Math.min(GLOSSARY.length-1,glossaryIdx+1))} disabled={glossaryIdx===GLOSSARY.length-1} style={{ padding:"10px 18px", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, fontSize:12, color:glossaryIdx===GLOSSARY.length-1?"rgba(200,230,215,0.2)":"rgba(200,230,215,0.6)", cursor:glossaryIdx===GLOSSARY.length-1?"not-allowed":"pointer" }}>Next →</button>
+                <button className="btn" onClick={()=>setGlossaryIdx(Math.max(0,glossaryIdx-1))} disabled={glossaryIdx===0} style={{ padding:"10px 18px", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, fontSize:12, color:glossaryIdx===0?"rgba(200,230,215,0.2)":"rgba(200,230,215,0.6)", cursor:glossaryIdx===0?"not-allowed":"pointer" }}>Previous</button>
+                <span style={{ fontSize:11, color:"rgba(200,230,215,0.3)", alignSelf:"center" }}>{glossaryIdx+1} of {GLOSSARY.length}</span>
+                <button className="btn" onClick={()=>setGlossaryIdx(Math.min(GLOSSARY.length-1,glossaryIdx+1))} disabled={glossaryIdx===GLOSSARY.length-1} style={{ padding:"10px 18px", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, fontSize:12, color:glossaryIdx===GLOSSARY.length-1?"rgba(200,230,215,0.2)":"rgba(200,230,215,0.6)", cursor:glossaryIdx===GLOSSARY.length-1?"not-allowed":"pointer" }}>Next</button>
               </div>
             </div>
           )}
@@ -770,6 +774,10 @@ export default function Flozek() {
         <NavBar />
       </div>
     );
+  }
+
+  return null;
+}
   }
 
   return null;
