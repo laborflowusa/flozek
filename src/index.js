@@ -7,4 +7,7 @@ function Root() {
   const [accepted, setAccepted] = React.useState(false);
   if (!accepted) return <Disclaimer onAccept={() => setAccepted(true)} />;
   return <App />;
-    }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Root />);
