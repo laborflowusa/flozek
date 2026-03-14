@@ -5,6 +5,8 @@ import {
 } from "./data";
 import { searchByZip } from "./zips";
 
+const STRIPE_URL = "https://buy.stripe.com/test_5kQ28reS81Fj2x6dK0gjC00";
+
 const calcLSI = w => {
   const A = w.tds < 50 ? 0.07 : w.tds < 150 ? 0.14 : w.tds < 300 ? 0.19 : w.tds < 500 ? 0.22 : 0.26;
   const C = w.calcium < 25 ? 1.0 : w.calcium < 50 ? 1.3 : w.calcium < 100 ? 1.6 : w.calcium < 200 ? 1.9 : 2.2;
@@ -42,8 +44,8 @@ const getGrade = score => {
 };
 
 const getCityRisk = city => {
-  const pfasRisk = city.pfas > 200 ? "CRISIS" : city.pfas > 70 ? "HIGH" : city.pfas > 4 ? "ELEVATED" : "SAFE";
-  const leadRisk = city.lead > 15 ? "CRISIS" : city.lead > 3.8 ? "ELEVATED" : "SAFE";
+  const pfasRisk    = city.pfas > 200 ? "CRISIS" : city.pfas > 70 ? "HIGH" : city.pfas > 4 ? "ELEVATED" : "SAFE";
+  const leadRisk    = city.lead > 15  ? "CRISIS" : city.lead > 3.8 ? "ELEVATED" : "SAFE";
   const nitrateRisk = city.nitrate > 10 ? "CRISIS" : city.nitrate > 3 ? "ELEVATED" : "SAFE";
   const overallRisk = [pfasRisk,leadRisk,nitrateRisk].includes("CRISIS") ? "CRISIS"
     : [pfasRisk,leadRisk,nitrateRisk].includes("HIGH") ? "HIGH"
@@ -53,6 +55,7 @@ const getCityRisk = city => {
 
 const riskColor = r => r==="CRISIS"?"#dc2626":r==="HIGH"?"#ea580c":r==="ELEVATED"?"#ca8a04":"#16a34a";
 const riskBg    = r => r==="CRISIS"?"rgba(220,38,38,0.08)":r==="HIGH"?"rgba(234,88,12,0.08)":r==="ELEVATED"?"rgba(202,138,4,0.08)":"rgba(22,163,74,0.08)";
+const goStripe  = () => window.open(STRIPE_URL, "_blank");
 
 const BG     = "linear-gradient(160deg,#e8f4fd 0%,#f0faf8 50%,#e0f2fe 100%)";
 const CARD   = "rgba(255,255,255,0.75)";
@@ -85,32 +88,32 @@ const CSS = `
 `;
 
 export default function Flozek() {
-  const [tab, setTab]               = useState("home");
-  const [isPro, setIsPro]           = useState(false);
+  const [tab, setTab]                 = useState("home");
+  const [isPro, setIsPro]             = useState(false);
   const [showUpgrade, setShowUpgrade] = useState(false);
-  const [zipInput, setZipInput]     = useState("");
-  const [zipResult, setZipResult]   = useState(null);
+  const [zipInput, setZipInput]       = useState("");
+  const [zipResult, setZipResult]     = useState(null);
   const [zipNotFound, setZipNotFound] = useState(false);
   const [brandSearch, setBrandSearch] = useState("");
-  const [brandTier, setBrandTier]   = useState("all");
-  const [brandSort, setBrandSort]   = useState("score");
-  const [selBrand, setSelBrand]     = useState(null);
-  const [citySearch, setCitySearch] = useState("");
-  const [cityRegion, setCityRegion] = useState("all");
-  const [selCity, setSelCity]       = useState(null);
-  const [calcVals, setCalcVals]     = useState({ pH:7.2, tds:150, calcium:40, bicarbonate:70 });
-  const [showResult, setShowResult] = useState(false);
-  const [lsiResult, setLsiResult]   = useState(null);
+  const [brandTier, setBrandTier]     = useState("all");
+  const [brandSort, setBrandSort]     = useState("score");
+  const [selBrand, setSelBrand]       = useState(null);
+  const [citySearch, setCitySearch]   = useState("");
+  const [cityRegion, setCityRegion]   = useState("all");
+  const [selCity, setSelCity]         = useState(null);
+  const [calcVals, setCalcVals]       = useState({ pH:7.2, tds:150, calcium:40, bicarbonate:70 });
+  const [showResult, setShowResult]   = useState(false);
+  const [lsiResult, setLsiResult]     = useState(null);
   const [selSymptoms, setSelSymptoms] = useState([]);
-  const [symptomRes, setSymptomRes] = useState(null);
+  const [symptomRes, setSymptomRes]   = useState(null);
   const [showSymptoms, setShowSymptoms] = useState(false);
-  const [learnSub, setLearnSub]     = useState("academy");
-  const [eduIdx, setEduIdx]         = useState(0);
+  const [learnSub, setLearnSub]       = useState("academy");
+  const [eduIdx, setEduIdx]           = useState(0);
   const [glossaryIdx, setGlossaryIdx] = useState(0);
-  const [walterQ, setWalterQ]       = useState("");
+  const [walterQ, setWalterQ]         = useState("");
   const [walterLoading, setWalterLoading] = useState(false);
-  const [walterAnswer, setWalterAnswer] = useState("");
-  const [showCivic, setShowCivic]   = useState(false);
+  const [walterAnswer, setWalterAnswer]   = useState("");
+  const [showCivic, setShowCivic]     = useState(false);
 
   const app = { fontFamily:"'DM Sans',sans-serif", background:BG, minHeight:"100vh", color:TEXT, maxWidth:440, margin:"0 auto", position:"relative", paddingBottom:80 };
 
@@ -128,9 +131,9 @@ export default function Flozek() {
     setWalterLoading(true);
     setWalterAnswer("");
     try {
-      const cityCtx   = CITIES.slice(0,20).map(c=>`${c.name}: PFAS ${c.pfas}ppt Lead ${c.lead}ppb`).join(", ");
-      const brandCtx  = WATER_DB.slice(0,10).map(b=>`${b.name}: pH ${b.pH} Ca ${b.calcium} Mg ${b.magnesium}`).join(", ");
-      const response  = await fetch("https://api.anthropic.com/v1/messages",{
+      const cityCtx  = CITIES.slice(0,20).map(c=>`${c.name}: PFAS ${c.pfas}ppt Lead ${c.lead}ppb`).join(", ");
+      const brandCtx = WATER_DB.slice(0,10).map(b=>`${b.name}: pH ${b.pH} Ca ${b.calcium} Mg ${b.magnesium}`).join(", ");
+      const res = await fetch("https://api.anthropic.com/v1/messages",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
@@ -140,7 +143,7 @@ export default function Flozek() {
           messages:[{role:"user",content:question}]
         })
       });
-      const data = await response.json();
+      const data = await res.json();
       setWalterAnswer(data.content?.[0]?.text || "Walter is thinking — try again in a moment.");
     } catch { setWalterAnswer("Walter is temporarily offline. Please try again."); }
     setWalterLoading(false);
@@ -171,7 +174,7 @@ export default function Flozek() {
             <div key={i} style={{fontSize:12,color:TEXT,padding:"6px 0",borderBottom:"1px solid rgba(3,105,161,0.06)"}}>{item}</div>
           ))}
         </div>
-        <button className="btn" onClick={()=>{setIsPro(true);setShowUpgrade(false);}} style={{width:"100%",padding:"16px",background:"linear-gradient(135deg,#0369a1,#0284c7)",border:"none",borderRadius:14,fontSize:16,fontWeight:700,color:"white",marginBottom:10,boxShadow:"0 8px 28px rgba(3,105,161,0.3)"}}>
+        <button className="btn" onClick={goStripe} style={{width:"100%",padding:"16px",background:"linear-gradient(135deg,#0369a1,#0284c7)",border:"none",borderRadius:14,fontSize:16,fontWeight:700,color:"white",marginBottom:10,boxShadow:"0 8px 28px rgba(3,105,161,0.3)"}}>
           Unlock Flow — $1.99 / month
         </button>
         <button className="btn" onClick={()=>setShowUpgrade(false)} style={{width:"100%",padding:"12px",background:"none",border:"1px solid rgba(3,105,161,0.15)",borderRadius:14,fontSize:13,color:SUBTEXT}}>
@@ -210,7 +213,7 @@ export default function Flozek() {
           <div style={{display:"flex",alignItems:"center",gap:8}}>
             {isPro
               ? <div style={{padding:"4px 10px",background:"linear-gradient(135deg,#0369a1,#0284c7)",borderRadius:20,fontSize:9,color:"white",fontWeight:700}}>FLOW PRO</div>
-              : <button className="btn" onClick={()=>setShowUpgrade(true)} style={{padding:"6px 12px",background:"linear-gradient(135deg,#0369a1,#0284c7)",border:"none",borderRadius:20,fontSize:10,fontWeight:700,color:"white"}}>Get Flow</button>
+              : <button className="btn" onClick={goStripe} style={{padding:"6px 12px",background:"linear-gradient(135deg,#0369a1,#0284c7)",border:"none",borderRadius:20,fontSize:10,fontWeight:700,color:"white"}}>Get Flow</button>
             }
             <div style={{fontSize:36,animation:"float 3s ease infinite"}}>💧</div>
           </div>
@@ -254,9 +257,9 @@ export default function Flozek() {
                 </div>
                 <div style={{display:"flex",gap:6,marginBottom:10}}>
                   {[
-                    {label:"PFAS", val:isPro?`${zipResult.pfas} ppt`:"●●● ppt", risk:risk.pfasRisk, locked:!isPro},
-                    {label:"Lead", val:isPro?`${zipResult.lead} ppb`:"●●● ppb", risk:risk.leadRisk, locked:!isPro},
-                    {label:"LSI",  val:`${lsi>0?"+":""}${lsi}`,                 risk:"SAFE",         locked:false},
+                    {label:"PFAS",val:isPro?`${zipResult.pfas} ppt`:"●●● ppt",risk:risk.pfasRisk,locked:!isPro},
+                    {label:"Lead",val:isPro?`${zipResult.lead} ppb`:"●●● ppb",risk:risk.leadRisk,locked:!isPro},
+                    {label:"LSI", val:`${lsi>0?"+":""}${lsi}`,              risk:"SAFE",          locked:false},
                   ].map((item,i)=>(
                     <div key={i} style={{flex:1,padding:"8px 4px",background:"rgba(255,255,255,0.65)",borderRadius:10,textAlign:"center"}}>
                       <div style={{fontFamily:"'Syne',sans-serif",fontSize:14,fontWeight:800,color:riskColor(item.risk),filter:item.locked?"blur(5px)":"none"}}>{item.val}</div>
@@ -275,7 +278,7 @@ export default function Flozek() {
                     Full Report
                   </button>
                   {!isPro&&(
-                    <button className="btn" onClick={()=>setShowUpgrade(true)} style={{flex:1,padding:"10px",background:"rgba(220,38,38,0.08)",border:"1px solid rgba(220,38,38,0.2)",borderRadius:10,fontSize:12,fontWeight:700,color:"#dc2626"}}>
+                    <button className="btn" onClick={goStripe} style={{flex:1,padding:"10px",background:"rgba(220,38,38,0.08)",border:"1px solid rgba(220,38,38,0.2)",borderRadius:10,fontSize:12,fontWeight:700,color:"#dc2626"}}>
                       🔒 Unlock Numbers
                     </button>
                   )}
@@ -323,7 +326,7 @@ export default function Flozek() {
 
         {/* PAYWALL TEASER */}
         {!isPro&&(
-          <button className="card" onClick={()=>setShowUpgrade(true)} style={{width:"100%",padding:16,background:"linear-gradient(135deg,rgba(220,38,38,0.06),rgba(234,88,12,0.04))",border:"1px solid rgba(220,38,38,0.15)",borderRadius:16,textAlign:"left",marginBottom:14}}>
+          <button className="card" onClick={goStripe} style={{width:"100%",padding:16,background:"linear-gradient(135deg,rgba(220,38,38,0.06),rgba(234,88,12,0.04))",border:"1px solid rgba(220,38,38,0.15)",borderRadius:16,textAlign:"left",marginBottom:14}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <div>
                 <div style={{fontSize:12,color:"#dc2626",fontWeight:700,marginBottom:4}}>⚠️ Walter has flagged cities near you</div>
@@ -348,7 +351,7 @@ export default function Flozek() {
         <div style={{padding:16,background:"linear-gradient(135deg,rgba(3,105,161,0.06),rgba(14,165,233,0.04))",borderRadius:16,border:`1px solid ${BORDER}`}}>
           <div style={{fontSize:11,color:"#7c3aed",letterSpacing:2,textTransform:"uppercase",marginBottom:6}}>Our Mission</div>
           <div style={{fontSize:13,color:SUBTEXT,lineHeight:1.7}}>A portion of every Flo·zēk Flow subscription supports clean water access in underserved communities globally.</div>
-          <button className="btn" onClick={()=>setShowUpgrade(true)} style={{marginTop:10,padding:"8px 16px",background:"linear-gradient(135deg,#0369a1,#0284c7)",border:"none",borderRadius:20,fontSize:12,fontWeight:700,color:"white"}}>
+          <button className="btn" onClick={goStripe} style={{marginTop:10,padding:"8px 16px",background:"linear-gradient(135deg,#0369a1,#0284c7)",border:"none",borderRadius:20,fontSize:12,fontWeight:700,color:"white"}}>
             Upgrade to Flow — $1.99/mo
           </button>
         </div>
@@ -361,18 +364,18 @@ export default function Flozek() {
   // ── TEST ──────────────────────────────────────────────────────────────────
   if (tab==="test") {
     const SYMPTOMS=[
-      {id:1,label:"Muscle cramps",      mineral:"Magnesium",   icon:"⚡"},
-      {id:2,label:"Poor sleep",         mineral:"Magnesium",   icon:"🌙"},
-      {id:3,label:"Chronic fatigue",    mineral:"Magnesium",   icon:"😴"},
-      {id:4,label:"Frequent headaches", mineral:"Magnesium",   icon:"🧠"},
-      {id:5,label:"Brittle nails",      mineral:"Calcium",     icon:"💅"},
-      {id:6,label:"Anxiety",            mineral:"Magnesium",   icon:"😰"},
-      {id:7,label:"Irregular heartbeat",mineral:"Magnesium",   icon:"❤️"},
-      {id:8,label:"Brain fog",          mineral:"Electrolytes",icon:"🌫️"},
-      {id:9,label:"Joint pain",         mineral:"Calcium",     icon:"🦴"},
-      {id:10,label:"Constipation",      mineral:"Magnesium",   icon:"🔄"},
-      {id:11,label:"High blood pressure",mineral:"Magnesium",  icon:"🩺"},
-      {id:12,label:"Tooth sensitivity", mineral:"Calcium",     icon:"🦷"},
+      {id:1, label:"Muscle cramps",      mineral:"Magnesium",   icon:"⚡"},
+      {id:2, label:"Poor sleep",         mineral:"Magnesium",   icon:"🌙"},
+      {id:3, label:"Chronic fatigue",    mineral:"Magnesium",   icon:"😴"},
+      {id:4, label:"Frequent headaches", mineral:"Magnesium",   icon:"🧠"},
+      {id:5, label:"Brittle nails",      mineral:"Calcium",     icon:"💅"},
+      {id:6, label:"Anxiety",            mineral:"Magnesium",   icon:"😰"},
+      {id:7, label:"Irregular heartbeat",mineral:"Magnesium",   icon:"❤️"},
+      {id:8, label:"Brain fog",          mineral:"Electrolytes",icon:"🌫️"},
+      {id:9, label:"Joint pain",         mineral:"Calcium",     icon:"🦴"},
+      {id:10,label:"Constipation",       mineral:"Magnesium",   icon:"🔄"},
+      {id:11,label:"High blood pressure",mineral:"Magnesium",   icon:"🩺"},
+      {id:12,label:"Tooth sensitivity",  mineral:"Calcium",     icon:"🦷"},
     ];
     const previewLSI=calcLSI(calcVals);
     const previewStatus=getLSIStatus(previewLSI);
@@ -530,7 +533,7 @@ export default function Flozek() {
                 <div style={{fontSize:48,marginBottom:16}}>🔒</div>
                 <div style={{fontFamily:"'Syne',sans-serif",fontSize:20,fontWeight:800,color:TEXT,marginBottom:8}}>{w.name}</div>
                 <div style={{fontSize:13,color:SUBTEXT,marginBottom:20}}>Full brand analysis including grade, minerals, pros, cons, and Walter verdict is a Flow Pro feature.</div>
-                <button className="btn" onClick={()=>setShowUpgrade(true)} style={{padding:"14px 28px",background:"linear-gradient(135deg,#0369a1,#0284c7)",border:"none",borderRadius:14,fontSize:14,fontWeight:700,color:"white"}}>Unlock with Flow</button>
+                <button className="btn" onClick={goStripe} style={{padding:"14px 28px",background:"linear-gradient(135deg,#0369a1,#0284c7)",border:"none",borderRadius:14,fontSize:14,fontWeight:700,color:"white"}}>Unlock with Flow — $1.99/mo</button>
               </div>
             ):(
               <>
@@ -540,7 +543,7 @@ export default function Flozek() {
                   <div style={{fontSize:11,color:SUBTEXT,marginTop:2}}>{w.type} · {w.origin}</div>
                   <div style={{fontSize:10,color:"rgba(3,105,161,0.5)",marginTop:2}}>🏢 {umbrella}</div>
                   <div style={{display:"flex",justifyContent:"center",gap:12,marginTop:14}}>
-                    {[{val:grade.grade,color:grade.color,label:"WALTER GRADE"},{val:w.score,color:"#0369a1",label:"HEALTH SCORE"},{val:`${w.lsi>0?"+":""}${w.lsi}`,color:status.color,label:"LSI SCORE"}].map((s,i)=>(
+                    {[{val:grade.grade,color:grade.color,label:"WALTER GRADE"},{val:w.score,color:"#0369a1",label:"HEALTH SCORE"},{val:`${w.lsi>0?"+":""}${w.lsi}`,color:getLSIStatus(w.lsi).color,label:"LSI SCORE"}].map((s,i)=>(
                       <div key={i} style={{textAlign:"center"}}>
                         <div style={{fontFamily:"'Syne',sans-serif",fontSize:42,fontWeight:800,color:s.color}}>{s.val}</div>
                         <div style={{fontSize:10,color:SUBTEXT}}>{s.label}</div>
@@ -551,11 +554,11 @@ export default function Flozek() {
                 <div style={{padding:16,background:CARD,borderRadius:18,border:`1px solid ${BORDER}`,marginBottom:14}}>
                   <div style={{fontSize:11,color:SUBTEXT,letterSpacing:2,textTransform:"uppercase",marginBottom:10}}>Mineral Profile</div>
                   {[
-                    {label:"Calcium",    val:w.calcium,    max:500,  unit:"mg/L",color:"#ca8a04"},
-                    {label:"Magnesium",  val:w.magnesium,  max:130,  unit:"mg/L",color:"#16a34a"},
-                    {label:"Bicarbonate",val:w.bicarbonate,max:1820, unit:"mg/L",color:"#0284c7"},
-                    {label:"Sodium",     val:w.sodium,     max:410,  unit:"mg/L",color:"#ea580c"},
-                    {label:"TDS",        val:w.tds,        max:2527, unit:"mg/L",color:"#7c3aed"},
+                    {label:"Calcium",    val:w.calcium,    max:500, unit:"mg/L",color:"#ca8a04"},
+                    {label:"Magnesium",  val:w.magnesium,  max:130, unit:"mg/L",color:"#16a34a"},
+                    {label:"Bicarbonate",val:w.bicarbonate,max:1820,unit:"mg/L",color:"#0284c7"},
+                    {label:"Sodium",     val:w.sodium,     max:410, unit:"mg/L",color:"#ea580c"},
+                    {label:"TDS",        val:w.tds,        max:2527,unit:"mg/L",color:"#7c3aed"},
                   ].map((m,i)=>(
                     <div key={i} style={{marginBottom:10}}>
                       <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
@@ -616,7 +619,7 @@ export default function Flozek() {
         <div style={{padding:"52px 22px 0"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}}>
             <div style={{fontFamily:"'Syne',sans-serif",fontSize:22,fontWeight:800,background:"linear-gradient(135deg,#0369a1,#0ea5e9)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>Brand Intelligence</div>
-            {!isPro&&<button className="btn" onClick={()=>setShowUpgrade(true)} style={{padding:"5px 10px",background:"rgba(220,38,38,0.08)",border:"1px solid rgba(220,38,38,0.2)",borderRadius:20,fontSize:10,color:"#dc2626"}}>🔒 45 locked</button>}
+            {!isPro&&<button className="btn" onClick={goStripe} style={{padding:"5px 10px",background:"rgba(220,38,38,0.08)",border:"1px solid rgba(220,38,38,0.2)",borderRadius:20,fontSize:10,color:"#dc2626"}}>🔒 45 locked</button>}
           </div>
           <div style={{fontSize:13,color:SUBTEXT,marginBottom:14}}>55 brands · umbrella companies · pros and cons</div>
           <input value={brandSearch} onChange={e=>setBrandSearch(e.target.value)} placeholder="Search brands..." style={{width:"100%",padding:"12px 16px",background:CARD,border:`1px solid ${BORDER}`,borderRadius:12,fontSize:13,color:TEXT,marginBottom:12}}/>
@@ -636,7 +639,7 @@ export default function Flozek() {
               const status=getLSIStatus(w.lsi);
               const isLocked=!isPro&&i>=10;
               return (
-                <button key={w.id} className="card" onClick={()=>isLocked?setShowUpgrade(true):setSelBrand(w)} style={{background:CARD,border:`1px solid ${isLocked?"rgba(3,105,161,0.06)":BORDER}`,borderRadius:16,padding:"12px 14px",textAlign:"left",animation:`fadeUp 0.3s ease ${Math.min(i*0.04,0.3)}s both`,display:"flex",alignItems:"center",gap:12,opacity:isLocked?0.7:1}}>
+                <button key={w.id} className="card" onClick={()=>isLocked?goStripe():setSelBrand(w)} style={{background:CARD,border:`1px solid ${isLocked?"rgba(3,105,161,0.06)":BORDER}`,borderRadius:16,padding:"12px 14px",textAlign:"left",animation:`fadeUp 0.3s ease ${Math.min(i*0.04,0.3)}s both`,display:"flex",alignItems:"center",gap:12,opacity:isLocked?0.7:1}}>
                   <div style={{fontSize:28,flexShrink:0}}>{isLocked?"🔒":w.logo}</div>
                   <div style={{flex:1,minWidth:0}}>
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}}>
@@ -645,7 +648,7 @@ export default function Flozek() {
                     </div>
                     <div style={{display:"flex",gap:6,alignItems:"center",flexWrap:"wrap"}}>
                       {isLocked?(
-                        <span style={{fontSize:10,color:SUBTEXT}}>Unlock with Flow to see full analysis</span>
+                        <span style={{fontSize:10,color:SUBTEXT}}>Unlock with Flow — $1.99/mo</span>
                       ):(
                         <>
                           <span style={{fontSize:10,color:status.color}}>{status.emoji} LSI {w.lsi>0?"+":""}{w.lsi}</span>
@@ -720,17 +723,17 @@ export default function Flozek() {
             <div style={{padding:16,background:CARD,borderRadius:18,border:`1px solid ${BORDER}`,marginBottom:14}}>
               <div style={{fontSize:11,color:SUBTEXT,letterSpacing:2,textTransform:"uppercase",marginBottom:12}}>Contamination Report</div>
               {[
-                {label:"PFAS Forever Chemicals",val:selCity.pfas,  unit:"ppt",risk:risk.pfasRisk,   limit:"EPA limit 4 ppt",   locked:isLocked},
-                {label:"Lead",                  val:selCity.lead,  unit:"ppb",risk:risk.leadRisk,   limit:"Action level 15 ppb",locked:isLocked},
-                {label:"Nitrate",               val:selCity.nitrate,unit:"ppm",risk:risk.nitrateRisk,limit:"EPA max 10 ppm",   locked:isLocked},
-                {label:"5-Year Violations",     val:selCity.violations,unit:"",risk:selCity.violations>7?"HIGH":selCity.violations>3?"ELEVATED":"SAFE",limit:"0 is ideal",locked:false},
+                {label:"PFAS Forever Chemicals",val:selCity.pfas,    unit:"ppt",risk:risk.pfasRisk,   limit:"EPA limit 4 ppt",   locked:isLocked},
+                {label:"Lead",                  val:selCity.lead,    unit:"ppb",risk:risk.leadRisk,   limit:"Action level 15 ppb",locked:isLocked},
+                {label:"Nitrate",               val:selCity.nitrate, unit:"ppm",risk:risk.nitrateRisk,limit:"EPA max 10 ppm",    locked:isLocked},
+                {label:"5-Year Violations",     val:selCity.violations,unit:"", risk:selCity.violations>7?"HIGH":selCity.violations>3?"ELEVATED":"SAFE",limit:"0 is ideal",locked:false},
               ].map((m,i)=>(
                 <div key={i} style={{padding:"10px 0",borderBottom:`1px solid ${BORDER}`}}>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                     <span style={{fontSize:12,color:SUBTEXT}}>{m.label}</span>
                     <div style={{display:"flex",alignItems:"center",gap:6}}>
                       {m.locked?(
-                        <button onClick={()=>setShowUpgrade(true)} style={{background:"rgba(220,38,38,0.08)",border:"1px solid rgba(220,38,38,0.2)",borderRadius:8,padding:"3px 8px",fontSize:11,color:"#dc2626",cursor:"pointer"}}>🔒 Unlock</button>
+                        <button onClick={goStripe} style={{background:"rgba(220,38,38,0.08)",border:"1px solid rgba(220,38,38,0.2)",borderRadius:8,padding:"3px 8px",fontSize:11,color:"#dc2626",cursor:"pointer"}}>🔒 Unlock $1.99/mo</button>
                       ):(
                         <>
                           <span style={{fontFamily:"'Syne',sans-serif",fontSize:16,fontWeight:800,color:riskColor(m.risk)}}>{m.val} {m.unit}</span>
@@ -746,10 +749,10 @@ export default function Flozek() {
             <div style={{padding:16,background:CARD,borderRadius:18,border:`1px solid ${BORDER}`,marginBottom:14}}>
               <div style={{fontSize:11,color:SUBTEXT,letterSpacing:2,textTransform:"uppercase",marginBottom:10}}>Water Chemistry</div>
               {[
-                {label:"pH Level",   val:selCity.pH,          unit:"",    color:"#7c3aed"},
-                {label:"TDS",        val:selCity.tds,         unit:"mg/L",color:"#0369a1"},
-                {label:"Calcium",    val:selCity.calcium,     unit:"mg/L",color:"#ca8a04"},
-                {label:"Bicarbonate",val:selCity.bicarbonate, unit:"mg/L",color:"#0284c7"},
+                {label:"pH Level",   val:selCity.pH,         unit:"",    color:"#7c3aed"},
+                {label:"TDS",        val:selCity.tds,        unit:"mg/L",color:"#0369a1"},
+                {label:"Calcium",    val:selCity.calcium,    unit:"mg/L",color:"#ca8a04"},
+                {label:"Bicarbonate",val:selCity.bicarbonate,unit:"mg/L",color:"#0284c7"},
               ].map((m,i)=>(
                 <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 0",borderBottom:`1px solid ${BORDER}`}}>
                   <span style={{fontSize:12,color:SUBTEXT}}>{m.label}</span>
@@ -798,8 +801,8 @@ export default function Flozek() {
               </div>
             )}
             {!isPro&&(
-              <button className="btn" onClick={()=>setShowUpgrade(true)} style={{width:"100%",padding:"12px",background:"rgba(3,105,161,0.06)",border:`1px solid ${BORDER}`,borderRadius:14,fontSize:12,color:"#0369a1"}}>
-                🔒 Unlock Civic Action Toolkit with Flow
+              <button className="btn" onClick={goStripe} style={{width:"100%",padding:"12px",background:"rgba(3,105,161,0.06)",border:`1px solid ${BORDER}`,borderRadius:14,fontSize:12,color:"#0369a1"}}>
+                🔒 Unlock Civic Action Toolkit — $1.99/mo
               </button>
             )}
           </div>
@@ -813,7 +816,7 @@ export default function Flozek() {
         <div style={{padding:"52px 22px 0"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}}>
             <div style={{fontFamily:"'Syne',sans-serif",fontSize:22,fontWeight:800,background:"linear-gradient(135deg,#7c3aed,#0369a1)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>City Water Intel</div>
-            {!isPro&&<button className="btn" onClick={()=>setShowUpgrade(true)} style={{padding:"5px 10px",background:"rgba(220,38,38,0.08)",border:"1px solid rgba(220,38,38,0.2)",borderRadius:20,fontSize:10,color:"#dc2626"}}>🔒 Full data</button>}
+            {!isPro&&<button className="btn" onClick={goStripe} style={{padding:"5px 10px",background:"rgba(220,38,38,0.08)",border:"1px solid rgba(220,38,38,0.2)",borderRadius:20,fontSize:10,color:"#dc2626"}}>🔒 Full data</button>}
           </div>
           <div style={{fontSize:13,color:SUBTEXT,marginBottom:14}}>{CITIES.length} cities · PFAS · Lead · Nitrate · Violations</div>
           <input value={citySearch} onChange={e=>setCitySearch(e.target.value)} placeholder="Search your city..." style={{width:"100%",padding:"12px 16px",background:CARD,border:`1px solid ${BORDER}`,borderRadius:12,fontSize:13,color:TEXT,marginBottom:12}}/>
@@ -825,17 +828,16 @@ export default function Flozek() {
           <div style={{display:"flex",flexDirection:"column",gap:8}}>
             {filteredCities.map((c,i)=>{
               const lsi=calcLSI(c);
-              const status=getLSIStatus(lsi);
               const risk=getCityRisk(c);
               const isLocked=!isPro&&i>=15;
               return (
-                <button key={i} className="card" onClick={()=>isLocked?setShowUpgrade(true):setSelCity(c)} style={{background:CARD,border:`1px solid ${risk.overallRisk==="CRISIS"?"rgba(220,38,38,0.3)":risk.overallRisk==="HIGH"?"rgba(234,88,12,0.2)":BORDER}`,borderRadius:14,padding:"12px 14px",textAlign:"left",animation:`fadeUp 0.3s ease ${Math.min(i*0.03,0.3)}s both`,display:"flex",alignItems:"center",gap:12}}>
+                <button key={i} className="card" onClick={()=>isLocked?goStripe():setSelCity(c)} style={{background:CARD,border:`1px solid ${risk.overallRisk==="CRISIS"?"rgba(220,38,38,0.3)":risk.overallRisk==="HIGH"?"rgba(234,88,12,0.2)":BORDER}`,borderRadius:14,padding:"12px 14px",textAlign:"left",animation:`fadeUp 0.3s ease ${Math.min(i*0.03,0.3)}s both`,display:"flex",alignItems:"center",gap:12}}>
                   <div style={{fontSize:24}}>{risk.overallRisk==="CRISIS"?"🚨":risk.overallRisk==="HIGH"?"⚠️":"🌆"}</div>
                   <div style={{flex:1}}>
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:3}}>
                       <span style={{fontSize:13,fontWeight:600,color:TEXT}}>{c.name}</span>
                       {isLocked?(
-                        <span style={{fontSize:10,color:"#dc2626"}}>🔒 Flow</span>
+                        <span style={{fontSize:10,color:"#dc2626"}}>🔒 $1.99/mo</span>
                       ):(
                         <span style={{fontSize:11,fontWeight:700,color:riskColor(risk.overallRisk)}}>{risk.overallRisk}</span>
                       )}
@@ -1008,7 +1010,7 @@ export default function Flozek() {
                   <div style={{fontSize:24,marginBottom:8}}>🔒</div>
                   <div style={{fontSize:13,fontWeight:700,color:TEXT,marginBottom:6}}>Civic Action Toolkit</div>
                   <div style={{fontSize:12,color:SUBTEXT,marginBottom:12}}>Learn who to contact, how to file complaints, and how to organize your community around water quality issues.</div>
-                  <button className="btn" onClick={()=>setShowUpgrade(true)} style={{padding:"12px 24px",background:"linear-gradient(135deg,#0369a1,#0284c7)",border:"none",borderRadius:12,fontSize:13,fontWeight:700,color:"white"}}>Unlock with Flow</button>
+                  <button className="btn" onClick={goStripe} style={{padding:"12px 24px",background:"linear-gradient(135deg,#0369a1,#0284c7)",border:"none",borderRadius:12,fontSize:13,fontWeight:700,color:"white"}}>Unlock with Flow — $1.99/mo</button>
                 </div>
               )}
               {isPro&&(
