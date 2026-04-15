@@ -5,7 +5,7 @@ import {
 } from "./data";
 import { searchByZip } from "./zips";
 
-const STRIPE_URL = "https://buy.stripe.com/test_5kQ28reS81Fj2x6dK0gjC00";
+const STRIPE_URL = "https://buy.stripe.com/fZu14f2XBf9LaHl0UKao800";
 
 const calcLSI = w => {
   const A = w.tds < 50 ? 0.07 : w.tds < 150 ? 0.14 : w.tds < 300 ? 0.19 : w.tds < 500 ? 0.22 : 0.26;
