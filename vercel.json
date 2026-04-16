@@ -1,15 +1,10 @@
 {
   "routes": [
     {
-      "src": "/manifest.json",
-      "dest": "/manifest.json"
+      "handle": "filesystem"
     },
     {
-      "src": "/sw.js",
-      "dest": "/sw.js"
-    },
-    {
-      "src": "/(.*)",
+      "src": "/.*",
       "dest": "/index.html"
     }
   ]
