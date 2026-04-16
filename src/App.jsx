@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {
+import { askWalterV2 } from "./askWalterV2";
   WATER_DB, CITIES, GLOSSARY, UMBRELLA_COMPANIES,
   FILTER_RECOMMENDATIONS, CIVIC_CONTACTS, WALTER_QA_PROMPTS
 } from "./data";
