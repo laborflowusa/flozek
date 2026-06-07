@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Disclaimer from './components/Disclaimer';
-import CheckoutButton from './components/CheckoutButton';
-import WalterAI from './components/WalterAI';
+import Disclaimer from './components/Disclaimer.jsx';
+import CheckoutButton from './components/CheckoutButton.jsx';
+import WalterAI from './components/WalterAI.jsx';
 
 function App() {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
