@@ -1,1 +1,9 @@
-
+{
+  "name": "Flo·zēk - Water Intelligence Platform",
+  "short_name": "Flozēk",
+  "description": "Know what's in your water. Ask WALTER.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#06080f",
+  "background_color": "#06080f"
+}
