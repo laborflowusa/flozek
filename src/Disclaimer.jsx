@@ -3,6 +3,12 @@ import { useState } from "react";
 export default function Disclaimer({ onAccept }) {
   const [checked, setChecked] = useState(false);
 
+  const handleAccept = () => {
+    if (checked && onAccept) {
+      onAccept();
+    }
+  };
+
   return (
     <div style={{ fontFamily:"'DM Sans',sans-serif", background:"#06080f", minHeight:"100vh", color:"#e4ede8", maxWidth:440, margin:"0 auto", display:"flex", flexDirection:"column", justifyContent:"center", padding:"32px 22px" }}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Syne:wght@800&display=swap');*{box-sizing:border-box;margin:0;padding:0;}`}</style>
@@ -45,7 +51,7 @@ export default function Disclaimer({ onAccept }) {
         </span>
       </button>
 
-      <button onClick={()=>{ if(checked) onAccept(); }} style={{ width:"100%", padding:"16px", background:checked?"linear-gradient(135deg,#63d39e,#2da870)":"rgba(255,255,255,0.05)", border:checked?"none":"1px solid rgba(255,255,255,0.08)", borderRadius:14, fontSize:15, fontWeight:700, color:checked?"#040d1a":"rgba(200,230,215,0.25)", cursor:checked?"pointer":"not-allowed", transition:"all 0.3s", boxShadow:checked?"0 8px 28px rgba(99,211,158,0.25)":"none" }}>
+      <button onClick={handleAccept} style={{ width:"100%", padding:"16px", background:checked?"linear-gradient(135deg,#63d39e,#2da870)":"rgba(255,255,255,0.05)", border:checked?"none":"1px solid rgba(255,255,255,0.08)", borderRadius:14, fontSize:15, fontWeight:700, color:checked?"#040d1a":"rgba(200,230,215,0.25)", cursor:checked?"pointer":"not-allowed", transition:"all 0.3s", boxShadow:checked?"0 8px 28px rgba(99,211,158,0.25)":"none" }}>
         {checked ? "Enter Flo·zēk 💧" : "Please accept to continue"}
       </button>
 
@@ -54,4 +60,4 @@ export default function Disclaimer({ onAccept }) {
       </div>
     </div>
   );
-        }
+}
