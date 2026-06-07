@@ -58,6 +58,6 @@ export default function Disclaimer({ onAccept }) {
       <div style={{ textAlign:"center", marginTop:16, fontSize:10, color:"rgba(200,230,215,0.2)", lineHeight:1.6 }}>
         By entering you agree to our terms of use.<br/>Flo·zēk © 2026 · Seek what flows through you.
       </div>
-    </div>
+        </div>
   );
 }
